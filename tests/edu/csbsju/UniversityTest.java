@@ -13,10 +13,14 @@ public class UniversityTest {
 	@Before
 	public void setUp() throws Exception {
 		aList = Arrays.asList("SCHOOL", "ENGINEERING");
-		a = new University("HARVARD", "MA", "BOSTON", "PRIVATE", 1010,
+		a = new University("HARVARD", "MA", "URBAN", "PRIVATE", 1010,
 				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3,
 				aList);
-				
+		bList = Arrays.asList("SPORTS", "ENGINEERING");
+		a = new University("HARVARD", "MA", "URBAN", "PRIVATE", 1010,
+				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3,
+				aList);
+		
 		b = new Account("Jesse","Upton","JWU","jesse",'a','N');
 	}
 	
