@@ -10,18 +10,19 @@ import org.junit.Test;
 
 public class UniversityTest {
 
+	private University a, b, c;
+	
 	@Before
 	public void setUp() throws Exception {
 		aList = Arrays.asList("SCHOOL", "ENGINEERING");
 		a = new University("HARVARD", "MA", "URBAN", "PRIVATE", 1010,
 				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3,
 				aList);
-		bList = Arrays.asList("SPORTS", "ENGINEERING");
-		a = new University("HARVARD", "MA", "URBAN", "PRIVATE", 1010,
-				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3,
-				aList);
+		bList = Arrays.asList("SPORTS", "PURPLE");
+		a = new University("University of Saint Thomas", "MA", "URBAN", "PRIVATE", 1010,
+				48.8, 570, 450, 3000, 49245, 13000, 67.1, 72.4, 3, 4, 1,
+				bList);
 		
-		b = new Account("Jesse","Upton","JWU","jesse",'a','N');
 	}
 	
 	@Test
@@ -36,12 +37,22 @@ public class UniversityTest {
 
 	@Test
 	public void testGetUniversityName() {
-		fail("Not yet implemented");
+		String expResult = "HARVARD";
+		assertEquals("University Name is Harvard" + expResult, 
+				expResult, a.getUniversityName());
 	}
 
 	@Test
 	public void testSetUniversityName() {
-		fail("Not yet implemented");
+		b.setUniversityName("NHCC");
+		String expResult = "NHCC";
+		assertEquals("University Name should be NHCC" + expResult, 
+				expResult, b.getUniversityName());
+		// Test upperCase functions
+		a.setUniversityName("Harvard2");
+		String expResult = "HARVARD2";
+		assertEquals("University Name is Harvard" + expResult, 
+				expResult, a.getUniversityName());
 	}
 
 	@Test
