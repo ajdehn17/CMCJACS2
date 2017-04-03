@@ -203,15 +203,21 @@ public class DBControllerTest {
 		  db1.addUniversityToSavedSchools("UNIVERSITY OF MINNESOTA", "juser");
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfirmEditFail()
+	{
+		db1.confirmEdit("No");
+	}
+	
 	@Test
 	public void testConfirmEdit() {
 		boolean expResult = true;
-		boolean test = db1.confirmEdit();
+		boolean test = db1.confirmEdit("Y");
 		assertEquals("Saved schools " + expResult, 
 				expResult, test);
 		
 		boolean expResult2 = false;
-		boolean test2 = db1.confirmEdit();
+		boolean test2 = db1.confirmEdit("N");
 		assertEquals("Saved schools " + expResult2, 
 				expResult2, test2);
 	}
