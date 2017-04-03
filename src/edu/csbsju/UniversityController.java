@@ -21,7 +21,6 @@ public class UniversityController {
 	 */
 	private DBController d;
 	
-	private DBLibrary ul;
 	/**
 	 * Default controller, this controller sets the DBController instance
 	 * variable to a new DBController object
@@ -114,8 +113,6 @@ public class UniversityController {
 	   * the specified emphasis already exists for the specified school
 	   */
 	  public int removeEmphases(String universityName,String emphases ){
-		University u = d.getAUniversity(universityName);
-		u.removeEmphases(emphases);
 	    return d.removeEmphases(universityName, emphases);
 	  }
 	

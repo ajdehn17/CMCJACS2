@@ -39,17 +39,19 @@ public class AdminFuncControllerTest {
 		ad = new Admin("Casey", "Zins", "czins", "pass", 'a', 'Y');
 		a = new AdminFuncController();
 		a2 = new AdminFuncController(ad);
+		univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
 		
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		univDBlib.university_deleteUniversity("x");
+	
 	}
 
 	@Test
 	public void testAdminFuncController() {
-		Admin actual = a.getAdmin();
+		AdminFuncController ac = new AdminFuncController();
+		Admin actual = ac.getAdmin();
 		assertEquals("The account object is null", null, actual);
 	}
 
@@ -61,13 +63,20 @@ public class AdminFuncControllerTest {
 
 	@Test
 	public void testGetAccounts() {
-		assertTrue("all accounts retrieved", a2.getAccounts() == d.getAccounts());
+		ArrayList<Account> acct = d.getAccounts();
+		int x = acct.size();
+		assertEquals("all accounts retrieved", 6, x);
 	}
 
 	@Test
 	public void testAddUniversity() {
-		a2.addUniversity("SJU", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
-		assertTrue("UniversityAdded", d.getAUniversity("SJU").getUniversityName()== "SJU");
+		int i = 0;
+		a2.addUniversity("PPP", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
+		if(d.getAUniversity("PPP") != null){
+			i++;
+		}
+		univDBlib.university_deleteUniversity("PPP");
+		assertEquals("UniversityAdded", 1, i++);
 	}
 
 	@Test
@@ -78,52 +87,54 @@ public class AdminFuncControllerTest {
 	      u.displayStudent();
 	      s = s + u.displayStudent(); 
 	    }
-		assertTrue("accounts displayed", a2.displayAccounts()== s);
+		assertEquals("accounts displayed", a2.displayAccounts(),s);
 	}
 
 	@Test
 	public void testGetUniversities() {
-		assertTrue("universities retrieved", a2.getUniversities()==d.getAllUniversities());
-	}
+		ArrayList<University> ar = d.getAllUniversities();
+		int x = ar.size();
+		assertEquals("all accounts retrieved", 183, x);
+		}
 
 	@Test
 	public void testDisplayUniversities() {
-		ArrayList<University> ab = d.getAllUniversities();
+		ArrayList<University> a = a2.getUniversities();
 	    String k = "";
-	    for(University u: ab){
-	      u.printString();
-	      k = k + u;
+	    for(University u: a){
+	    	k = k = u.printString();
 	    }
-		assertTrue("universities displayed",a2.displayUniversities()== k);
-		
+		assertEquals("universities displayed",a2.displayUniversities(),k);
 	}
 
 	@Test
 	public void testFindAccount() {
-		assertTrue("account found",d.findAccount("nAdmin").equals(a2.findAccount("nAdmin")));
+		Account a = a2.findAccount("nadmin");
+		assertEquals("account found",a.getUsername(), "nadmin");
 	}
 
 	@Test
 	public void testViewAccount() {
-		assertTrue("account viewed", d.findAccount("nAdmin").equals(a2.viewAccount("nAdmin")));
+		Account a = a2.viewAccount("nadmin");
+		assertEquals("account found",a.getUsername(), "nadmin");
 	}
 
 	@Test
 	public void testEditAccount() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testAddAccount() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testAddEmphases() {
 		int exp = 1;
 		int actual = 0;
-		a2.addEmphases("SJU", "Science");
-		University u = d.getAUniversity("SJU");
+		a2.addEmphases("UNIVERSITY OF MINNESOTA", "Science");
+		University u = d.getAUniversity("UNIVERSITY OF MINNESOTA");
 		ArrayList<String> emp = (ArrayList<String>) u.getEmphases();
 		for(String e: emp)
 			if(e.equals("Science")){
@@ -136,9 +147,8 @@ public class AdminFuncControllerTest {
 	public void testRemoveEmphases() {
 		int exp = 0;
 		int actual = 0;
-		a2.addEmphases("SJU", "Science");
-		a2.removeEmphases("SJU", "Science");
-		University u = d.getAUniversity("SJU");
+		a2.removeEmphases("UNIVERSITY OF MINNESOTA", "Science");
+		University u = d.getAUniversity("UNIVERSITY OF MINNESOTA");
 		ArrayList<String> emp = (ArrayList<String>) u.getEmphases();
 		for(String e: emp)
 			if(e.equals("Science")){

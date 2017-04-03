@@ -120,8 +120,7 @@ public class AdminFuncController {
     ArrayList<University> a = this.getUniversities();
     String k = "";
     for(University u: a){
-      u.printString();
-      k = k + u;
+    	k = k = u.printString();
     }
     return k;
   }

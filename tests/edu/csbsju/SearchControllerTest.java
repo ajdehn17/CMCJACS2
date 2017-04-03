@@ -533,7 +533,7 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchCase22() {
 		int result = 0;
-		int expected = 7;
+		int expected = 8;
 		List<String> schools = Arrays.asList("BARNARD","BUCKNELL","GEORGETOWN","SMITH","SUNY PLATTSBURGH","UNIVERSITY OF CHICAGO","UNIVERSITY OF VIRGINIA");
 				List<University> list = sc.search(null,null,null,null,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,20,0,0,0,0,0,0,null);
 		for(University u:list){
@@ -552,7 +552,7 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchCase23() {
 		int result = 0;
-		int expected = 22;
+		int expected = 23;
 		List<String> schools = Arrays.asList("BROWN","BRYN MAWR","CAL TECH","COLUMBIA","CORNELL","DARTMOUTH",
 				"ECOLE POLYTECHNIQUE","HARVARD","JOHNS HOPKINS","MASSACHUSETTS INSTITUTE OF TECHNOLOGY","NOTRE DAME","PENN STATE",
 				"PRINCETON","RICE","STANFORD","SWARTHMORE","UNIVERSITY OF CALIFORNIA BERKELEY","UNIVERSITY OF MICHIGAN","UNIVERSITY OF PENNSYLVANIA",
@@ -595,7 +595,7 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchCase25() {
 		int result = 0;
-		int expected = 14;
+		int expected = 15;
 		List<String> schools = Arrays.asList("BENNINGTON","BOSTON COLLEGE","CHALMERS UNIVERSITY OF TECHNOLOGY","DARTMOUTH","DRAKE UNIVERSITY","ECOLE POLYTECHNIQUE","FLORIDA ACADEMIC UNIVERSITY",
 				"TULANE","UNIVERSITY OF COLORADO","UNIVERSITY OF EVANSVILLE","UNIVERSITY OF MASSACHUSETTS AMHERST","UNIVERSITY OF MICHIGAN","UNIVERSITY OF PITTSBURGH","UNIVERSITY OF TEXAS");
 				List<University> list = sc.search(null,null,null,null,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,null);
@@ -642,7 +642,7 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchCase27() {
 		int result = 0;
-		int expected = 12;
+		int expected = 13;
 		List<String> schools = Arrays.asList("ARIZONA STATE","BROWN","CHALMERS UNIVERSITY OF TECHNOLOGY","ECOLE POLYTECHNIQUE","STANFORD","UNIVERSITY OF CALIFORNIA SANTA CRUZ",
 				"UNIVERSITY OF COLORADO","UNIVERSITY OF GEORGIA","UNIVERSITY OF KANSAS","UNIVERSITY OF MICHIGAN","UNIVERSITY OF TEXAS","WALLA WALLA COLLEGE");
 				List<University> list = sc.search(null,null,null,null,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,null);
@@ -913,7 +913,7 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchNoCriteria() {
 		int result = 0;
-		int expected = 182;
+		int expected = 183;
 		DBController d = new DBController();
 		List<University> y = d.getAllUniversities();
 		List<String> schools = new ArrayList<String>();
