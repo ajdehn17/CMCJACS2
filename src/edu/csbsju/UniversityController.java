@@ -120,9 +120,9 @@ public class UniversityController {
 	 * Shows details of a university
 	 * @param u University object requested
 	 */
-	public void displayUniversity(University u)
+	public String displayUniversity(University u)
 	{
-		u.printString();
+		return u.printString();
 	}
 	
 }

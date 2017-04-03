@@ -359,14 +359,16 @@ public class DBController {
 	  * @return boolean, a boolean indicating whether or not the user confirms
 	  * that they want to edit
 	  */
-	 public boolean confirmEdit(){
-		  String answer = JOptionPane.showInputDialog("Are You sure you want to confirm change? (Y/N)");
+	 public boolean confirmEdit(String answer){
 		  if(answer.equals("y") || answer.equals("Y")){
 			  return true;
 		  }
-		  else{
-			  JOptionPane.showMessageDialog(null,"The changes were not saved");
+		  else if(answer.equals("n") || answer.equals("N")){
 			  return false;
+		  }
+		  else
+		  {
+			  throw new IllegalArgumentException("Edit must be either Y or N");
 		  }
 	 }
 	 
