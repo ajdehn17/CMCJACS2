@@ -212,7 +212,16 @@ public class University {
 	 * @param location the location to set
 	 */
 	public void setLocation(String location) {
-		this.location = location.toUpperCase();
+		if(location.equalsIgnoreCase("URBAN") || location.equalsIgnoreCase("SUBURBAN") ||
+				location.equalsIgnoreCase("SMALL-CITY") || location.equalsIgnoreCase("-1"))
+		{
+			this.location = location.toUpperCase();
+		}
+		else
+		{
+			throw new IllegalArgumentException("Location must be Urban, Suburban, or Small-city.");
+		}
+		
 	}
 	
 	/**
@@ -228,7 +237,16 @@ public class University {
 	 * @param state the state to set
 	 */
 	public void setState(String state) {
-		this.state = state.toUpperCase();
+		if(state.length()==2)
+		{
+			this.state = state.toUpperCase();
+		}
+		else
+		{
+			throw new IllegalArgumentException("State must be 2 characters.");
+
+		}
+		
 	}
 	
 	/**
@@ -244,7 +262,16 @@ public class University {
 	 * @param control the control to set
 	 */
 	public void setControl(String control) {
-		this.control = control.toUpperCase();
+		if(control.equalsIgnoreCase("PRIVATE") || control.equalsIgnoreCase("STATE") ||
+				control.equalsIgnoreCase("CITY") || control.equalsIgnoreCase("-1"))
+		{
+			this.control = control.toUpperCase();
+		}
+		else
+		{
+			throw new IllegalArgumentException("Control must be Private, State, City, or -1.");
+		}
+		
 	}
 	
 	/**
@@ -282,7 +309,7 @@ public class University {
 	 * @throws IllegalArgumentException if percentFemale is less than 0
 	 */
 	public void setPercentFemale(double percentFemale) {
-		if(percentFemale < 0)
+		if(percentFemale < 0 || percentFemale > 100)
 		{
 			throw new IllegalArgumentException("Percent female cannot be negative.");
 		}
@@ -526,7 +553,7 @@ public class University {
 	 * @param emp String representing the emphases
 	 */
 	public void addEmphases(String emp){
-		emphases.add(emp);
+		emphases.add(emp.toUpperCase());
 	}
 	
 	/**
@@ -535,7 +562,7 @@ public class University {
 	 */
 	public void removeEmphases(String emp){
 		for(String e:emphases){
-			if(emp.equals(e)){
+			if(emp.equalsIgnoreCase(e)){
 				emphases.remove(e);
 			}
 		}
