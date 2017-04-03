@@ -61,7 +61,7 @@ public class UserFuncController {
 	 */
 	public boolean addUniversityToSavedSchools(String uni)
 	{
-		 d.addUniversityToSavedSchools(uni,u.getUsername());
+		 d.addUniversityToSavedSchools(uni,this.u.getUsername());
 		 return true;
 	}
 	
@@ -136,6 +136,8 @@ public class UserFuncController {
 	 */
 	public User displayStudentDetails()
 	{
+		if(u == null)
+			throw new Error("The user is null");
 		u.displayStudent();
 		return u;
 	}

@@ -225,8 +225,11 @@ public class Account {
 	  * This method acts like a toString method.
 	  */
 	 public String displayStudent(){
-	  return "[FirstName=" + firstName + ", LastName=" + lastName + 
-	    ", Username=" + username + ", Password=" + password+", Type=" + type + ", Status=" + status+"]\n";
+		 if(this.username == null){
+				 throw new Error("The object is null");}
+		 else
+			 return "[FirstName=" + firstName + ", LastName=" + lastName + 
+					 ", Username=" + username + ", Password=" + password+", Type=" + type + ", Status=" + status+"]\n";
 	 }
 	 
 	 
