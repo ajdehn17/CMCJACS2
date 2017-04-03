@@ -502,6 +502,10 @@ public class DBController {
 			 System.out.println(s);
 		 }
 		 */
+		 ArrayList<Account> ac = d.getAccounts();
+		 for(Account p: ac){
+			 System.out.println(p.displayStudent());
+		 }
 		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();

@@ -185,7 +185,7 @@ public class DBControllerTest {
 		  
 		  db1.removeUniversityFromSavedSchools("STANFORD", "juser");
 
-	}
+	} 
 
 	@Test
 	public void testRemoveUniversityFromSavedSchools() {

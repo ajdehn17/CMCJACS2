@@ -136,13 +136,20 @@ public class AdminFuncControllerTest {
 	@Test
 	public void testEditAccount() {
 		boolean k = a2.editAccount("Casey", "Booth", "czins", "pass", 'a', 'Y');
+		Account a = d.findAccount("czins");
 		assertEquals("account edited", k, true);
+		assertEquals("account edited",a.getLastName(), "Booth");
+		//a2.editAccount("Casey", "Zins", "czins", "pass", 'a', 'Y');
+		
 	}
 
 	@Test
 	public void testAddAccount() {
 		a2.addAccount("Carly", "Ciccati", "cmciccati", "p", 'a', 'Y');
-		d.findAccount("cmciccati");
+		Account a = d.findAccount("cmciccati");
+		assertEquals("account edited", a.getUsername(), "cmciccati");
+		univDBlib.user_deleteAccount("cmciccati");
+
 	}
 
 	@Test
