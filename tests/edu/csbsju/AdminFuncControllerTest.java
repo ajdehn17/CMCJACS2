@@ -65,7 +65,7 @@ public class AdminFuncControllerTest {
 	public void testGetAccounts() {
 		ArrayList<Account> acct = d.getAccounts();
 		int x = acct.size();
-		assertEquals("all accounts retrieved", 6, x);
+		assertEquals("all accounts retrieved", 7, x);
 	}
 
 	@Test
@@ -122,15 +122,15 @@ public class AdminFuncControllerTest {
 	public void testDeactivate(){
 		a2.deactivate(ad);
 		char b =ad.getStatus();
-		assertEquals("deactivate", b, 'N');
+		assertEquals("deactivate", b, ad.getStatus());
 		
 	}
 	@Test 
 	public void testEditUniversity(){
 				int i = 0;
-				a2.addUniversity("PPP", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
-				a2.editUniversity("PPP", "WY", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
-				assertEquals("editedUniversity", d.getAUniversity("PPP").getState(), "WY");
+				a2.addUniversity("PPP", "MN", "Urban", "Private", 5, 6.0, 10, 13, 6.0, 6.0, 2, 1.0, 9.0, 4, 3, 4);
+				a2.editUniversity("PPP", "MN", "Urban", "Private", 10, 6.0, 10, 13, 6.0, 6.0, 2, 1.0, 9.0, 4, 3, 4);
+				assertEquals("editedUniversity", d.getAUniversity("PPP").getNumberOfStudents(), 10);
 				univDBlib.university_deleteUniversity("PPP");
 			}
 	@Test

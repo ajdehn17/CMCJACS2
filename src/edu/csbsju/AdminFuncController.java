@@ -135,8 +135,9 @@ public class AdminFuncController {
    * deactivated.
    * @param a an Account object
    */
-  public void deactivate(Account a){
+  public char deactivate(Account a){
     d.deactivate(a);
+    return 'N';
     
   }
   
@@ -205,7 +206,7 @@ public class AdminFuncController {
    * @param type the type of the account
    * @param status the status of the account
    */
-  public void editAccount(String firstname, String lastname, String username, String password, char type, char status){
+  public boolean editAccount(String firstname, String lastname, String username, String password, char type, char status){
     boolean b = d.editAccount(username, firstname, lastname, password, type, status);
     admin.editAccount(username, firstname, lastname, password, type, status);
     if(b){
@@ -214,6 +215,7 @@ public class AdminFuncController {
     else{
 	   System.out.println("The Change was unsuccessful");
     }
+    return b;
    }
   
   /**
