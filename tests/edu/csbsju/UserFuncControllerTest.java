@@ -74,7 +74,14 @@ public class UserFuncControllerTest {
 
 	@Test
 	public void testDisplayStudentDetails() {
-		fail("Not yet implemented");
+		User u = ufc.displayStudentDetails();
+		assertEquals("firstname is"+u.getFirstName(),u.getFirstName(),"Jacob");
+		assertEquals("lastname is"+u.getLastName(),u.getLastName(),"Upton");
+		assertEquals("username is"+u.getUsername(),u.getUsername(),"JSU");
+		assertEquals("password is"+u.getPassword(),u.getPassword(),"Jsu--2019");
+		assertEquals("type is"+u.getType(),u.getType(),"u");
+		assertEquals("status is"+u.getStatus(),u.getStatus(),"Y");
+		
 	}
 
 	@Test
