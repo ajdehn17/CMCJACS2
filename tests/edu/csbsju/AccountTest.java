@@ -17,8 +17,8 @@ public class AccountTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		a = new Account("Jacob","Upton","JSU","Jsu--2019",'Y','u');
-		b = new Account("Jesse","Upton","JWU","jesse",'N','u');
+		a = new Account("Jacob","Upton","JSU","Jsu--2019",'u','Y');
+		b = new Account("Jesse","Upton","JWU","jesse",'a','N');
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class AccountTest {
 	/**
 	 * Test method for {@link edu.csbsju.Account#Account(java.lang.String)}.
 	 */
-	@Test
+	@Test (expected = Error.class)
 	public void testAccountString() {
 		a = new Account("JESSE");
 		String p = a.getPassword();
@@ -157,7 +157,7 @@ public class AccountTest {
 	/**
 	 * Test method for {@link edu.csbsju.Account#logOff()}.
 	 */
-	@Test
+	@Test (expected = Error.class)
 	public void testLogOff() {
 		a.logOff();
 		String p = a.getPassword();

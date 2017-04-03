@@ -14,8 +14,8 @@ public class AdminTest {
 	  private Admin admin2;
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		admin = new Admin("cjzins");
-	   admin2 = new Admin("Casey", "Zins", "czins", "pass", 'Y', 'u');
+	   admin = new Admin("cjzins");
+	   admin2 = new Admin("Casey", "Zins", "czins", "pass", 'u','Y');
 	}
 
 	@After
@@ -38,18 +38,21 @@ public class AdminTest {
 	@Test
 	public void testSetStatus() {
 		 admin2.setStatus('N');
-		 Assert.assertTrue("status is N", admin2.isActive() == false);
+		 char exp = admin2.getStatus();
+		 System.out.println(exp);
+		 assertEquals("Status is N", exp, 'N');
 	}
 
-	@Test
+	@Test 
 	public void testSetType() {
 		admin2.setType('u');
-	    Assert.assertTrue("type is u", admin2.returnType() == 'u');
+		char exp = admin2.returnType();
+	    assertEquals("type is u", exp, 'u');
 	}
 
 	@Test
 	public void testEditAccount() {
-		admin.editAccount("Cas", "zi", "czins", "pa", 'N', 'a');
+		admin.editAccount("Cas", "zi", "czins", "pa", 'a','N');
 		Assert.assertTrue("name is", admin.getFirstName()=="Cas");
 		Assert.assertTrue("last name is", admin.getLastName()=="zi");
 		Assert.assertTrue("password is", admin.getPassword()=="pa");
@@ -57,7 +60,7 @@ public class AdminTest {
 
 	@Test
 	public void testAddAccount() {
-		Account a = admin.addAccount("lori", "zins", "lvzins", "pass", 'Y', 'a');
+		Account a = admin.addAccount("lori", "zins", "lvzins", "pass", 'a','Y');
 		Assert.assertTrue("a name is", a.getFirstName()=="lori");
 		Assert.assertTrue("a last name is", a.getLastName()=="zins");
 		Assert.assertTrue("a password is", a.getPassword()=="pass");

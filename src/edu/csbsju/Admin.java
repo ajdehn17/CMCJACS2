@@ -32,7 +32,7 @@ public class Admin extends Account{
   * @param status the status of the admin
   * @param type the type of the admin
   */
- public Admin(String firstName, String lastName, String username, String password, char status, char type) {
+ public Admin(String firstName, String lastName, String username, String password, char type, char status) {
   super(firstName, lastName, username, password, type,status);
   this.status = status;
   this.type = type;
@@ -48,22 +48,6 @@ public class Admin extends Account{
     super(userName);    
     this.status = '\0';
     this.type = '\0';
- }
- 
- /**
-  * This method sets the status character to the parameter value
-  * @param s character indicating the status of the user
-  */
- public void setStatus(char s){
-	 this.status = s;
- }
- 
- /**
-  * This method sets the type character to the parameter value
-  * @param t character indicating the type of the user
-  */
- public void setType(char t){
-	 this.type = t;
  }
  
  /**
