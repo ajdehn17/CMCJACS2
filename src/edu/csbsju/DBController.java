@@ -58,7 +58,7 @@ public class DBController {
 		 int count = 0;
 		 while (!(found) && count<users.length)
 		 {
-			 if(users[count][2].equals(u))
+			 if(users[count][2].equalsIgnoreCase(u))
 			 {
 				 return true;
 			 }
@@ -82,7 +82,7 @@ public class DBController {
 		 int count = 0;
 		 while(!found && count<users.length)
 		 {
-			 if(users[count][2].equals(u))
+			 if(users[count][2].equalsIgnoreCase(u))
 			 {
 				 return users[count][3];
 			 }
@@ -195,7 +195,7 @@ public class DBController {
 		 int count = 0;
 		 while(!found && count<users.length)
 		 {
-			 if(users[count][2].equals(username))
+			 if(users[count][2].equals(username.toLowerCase()))
 			 {
 				 firstName = users[count][0];
 				 lastName = users[count][1];
@@ -222,7 +222,7 @@ public class DBController {
 		 ArrayList<University> x = this.getAllUniversities();
 		 University match = null;
 		 for(University u:x){
-				 if(u.getUniversityName().equals(name)){
+				 if(u.getUniversityName().equalsIgnoreCase(name)){
 					 match = u;
 				 }
 		 }
@@ -313,7 +313,7 @@ public class DBController {
 		 }
 		 while(i<savedSchools.length)
 		 {
-			 if(username.equals(savedSchools[i][0]))
+			 if(username.equalsIgnoreCase(savedSchools[i][0]))
 			 {
 				 for(j = 1; j<savedSchools[i].length; j++)
 				 {
@@ -467,7 +467,10 @@ public class DBController {
 	 public int removeEmphases(String universityName,String emphases ){
 		 return univDBlib.university_removeUniversityEmphasis(universityName, emphases);
 	 }
-	
+	public void removeU(String u)
+	{
+		univDBlib.university_deleteUniversity(u);
+	}
 	 /**
 	  * This is the MAIN METHOD
 	  * @param args the parameter for the main method
@@ -480,15 +483,24 @@ public class DBController {
 		 d.removeEmphases("x", "Sports");
 		 d.removeEmphases("x", "Academics");
 		 univDBlib.university_deleteUniversity("x");
+		 univDBlib.university_deleteUniversity("AUGSBURG2");
+		 d.removeEmphases("AUGSBURG","MIS");
 		 
+		 ArrayList<University> allAccounts = d.getAllUniversities();
+		 System.out.println("Size: " + allAccounts.size());
 		 University test = d.getAUniversity("AUGSBURG");
 		 System.out.println(test.printString());
+		 
+		 System.out.println(d.findAccount("JuSer").getStatus());
+		 
+		 /**
 		 
 		 ArrayList<String> actResult = (ArrayList<String>) d.getUserSavedSchools("juser");
 		 for(String s: actResult)
 		 {
 			 System.out.println(s);
 		 }
+		 */
 		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();

@@ -29,26 +29,26 @@ public class DBLibraryDriver {
   public void testAddEditRemoveU()
  {
 	  // addUniversity()
-	  ArrayList<String> emp = new ArrayList<String>();
-	  emp.add("Sports");
-	  emp.add("Academics");
-	  University newU = new University("x","x","x","x",1,1,1,1,1,1,1,1,1,1,1,1,emp);
-	  univDBlib.addUniversity(newU);
-	  University ourU = univDBlib.getAUniversity("AUGSBURG");
-	  System.out.println(ourU.printString());
-	  ArrayList<String> ourEmp = (ArrayList<String>) ourU.getEmphases();
-	  for(String exEmp: ourEmp)
-	  {
-		  System.out.println("Should be Sports and Academics " + exEmp);
-	  }
-	  
-	  // editUniversity
-	  ourU.setState("MN");
-	 // univDBlib.editUniversity(ourU.getUniversityName(), ourU.getState(), ourU.getLocation, ourU.getControl(), ourU.getNumberOfStudents(),
-	  // ourU.getPercentFemale(), ourU.getSatVerbal(), ourU.getSatMath(), ourU.getExpenses(), ourU.getFinancialAid(), ourU.getNumberOfApplicants(),
-	  // ourU.getPercentAdmitted(), ourU.getPercentEnrolled(), ourU.getAcademicScale(), ourU.getSocialScale(), ourU.getQualityOfLife());
-	  University editU = univDBlib.getAUniversity("x");
-	  System.out.println("Should be MN: "+ editU.getState());
+//	  ArrayList<String> emp = new ArrayList<String>();
+//	  emp.add("Sports");
+//	  emp.add("Academics");
+//	  University newU = new University("x","x","x","x",1,1,1,1,1,1,1,1,1,1,1,1,emp);
+//	  univDBlib.addUniversity(newU);
+//	  University ourU = univDBlib.getAUniversity("AUGSBURG");
+//	  System.out.println(ourU.printString());
+//	  ArrayList<String> ourEmp = (ArrayList<String>) ourU.getEmphases();
+//	  for(String exEmp: ourEmp)
+//	  {
+//		  System.out.println("Should be Sports and Academics " + exEmp);
+//	  }
+////	  
+//	  // editUniversity
+//	  ourU.setState("MN");
+//	 // univDBlib.editUniversity(ourU.getUniversityName(), ourU.getState(), ourU.getLocation, ourU.getControl(), ourU.getNumberOfStudents(),
+//	  // ourU.getPercentFemale(), ourU.getSatVerbal(), ourU.getSatMath(), ourU.getExpenses(), ourU.getFinancialAid(), ourU.getNumberOfApplicants(),
+//	  // ourU.getPercentAdmitted(), ourU.getPercentEnrolled(), ourU.getAcademicScale(), ourU.getSocialScale(), ourU.getQualityOfLife());
+//	  University editU = univDBlib.getAUniversity("x");
+//	  System.out.println("Should be MN: "+ editU.getState());
 	  
 	  // removeUniversity
 	    
