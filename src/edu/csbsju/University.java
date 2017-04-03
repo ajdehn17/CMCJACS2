@@ -539,8 +539,8 @@ public class University {
 	 * This is like a toString method. It prints out all of the 
 	 * attributes for a given University.
 	 */
-	public void printString() {
-		System.out.println( "Name: \t\t\t" + universityName + "\nLocation: \t\t" + location + "\nState: \t\t\t" + state
+	public String printString() {
+		return ( "Name: \t\t\t" + universityName + "\nLocation: \t\t" + location + "\nState: \t\t\t" + state
 				+ "\nControl: \t\t" + control + "\nNumber Of Students: \t" + numberOfStudents + "\nPercent Female: \t" + percentFemale
 				+ "\nSAT Verbal: \t\t" + satVerbal + "\nSAT Math: \t\t" + satMath + "\nExpenses: \t\t" + expenses + "\nfinancialAid: \t\t"
 				+ financialAid + "\nNumber Of Applicants: \t" + numberOfApplicants + "\nPercent Admitted: \t" + percentAdmitted

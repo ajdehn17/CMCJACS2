@@ -205,25 +205,15 @@ public class Account {
 	  * They will be brought to their prospective screen
 	  * @param t char The type (admin or user) of the Account object
 	  */
-	 public void displayMenu(char t){
-		 if(t == 'u'){
-				System.out.println();
-		  	    System.out.println("--------------------------------------------------------");
-			    System.out.println("\tS: Search For Schools");
-			    System.out.println("\tM: Manage My Saved Schools");
-			    System.out.println("\tP: Manage My Profile");
-			    System.out.println("\tQ: To Quit");
-			    System.out.println();
+		public String displayMenu(char t){
+			 if(t == 'u'){
+				 return"\tS: Search For Schools\n\tM: Manage My Saved Schools\n\tP: Manage My Profile\n\tQ: To Quit\n";
+			 }
+			 else if(t == 'a'){
+				    return("\tU: Manage Universities\n\tZ: Manage Users\n\tQ: To Quit");
+				}
+			 return null;
 		 }
-		 else if(t == 'a'){
-				System.out.println();
-		  	    System.out.println("--------------------------------------------------------");
-			    System.out.println("\tU: Manage Universities");
-			    System.out.println("\tZ: Manage Users");
-			    System.out.println("\tQ: To Quit");
-			    System.out.println();
-			}
-	 }
 	 
 	 /**
 	  * This method is used when there is an error in the login process. This
@@ -231,8 +221,8 @@ public class Account {
 	  * when logging in. This error is often because the user input a wrong
 	  * username or password
 	  */
-	 public void displayLoginError(){
-		 System.out.println("There was an error Loggin in. Please Try again.");
+	 public String displayLoginError(){
+		 return("There was an error Loggin in. Please Try again.");
 	 }
 	 
 	 /**
