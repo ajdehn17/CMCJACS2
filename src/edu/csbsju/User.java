@@ -22,7 +22,7 @@ public class User extends Account {
 	 * @param status the status of the admin
 	 * @param type the type of the admin
 	 */
-	public User(String firstName, String lastName, String username, String password, char status, char type) {
+	public User(String firstName, String lastName, String username, String password, char type,  char status) {
 		super(firstName, lastName, username, password, type, status);
 	}
 

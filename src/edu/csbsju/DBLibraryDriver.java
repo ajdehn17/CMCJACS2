@@ -34,7 +34,8 @@ public class DBLibraryDriver {
 	  emp.add("Academics");
 	  University newU = new University("x","x","x","x",1,1,1,1,1,1,1,1,1,1,1,1,emp);
 	  univDBlib.addUniversity(newU);
-	  University ourU = univDBlib.getAUniversity("x");
+	  University ourU = univDBlib.getAUniversity("AUGSBURG");
+	  System.out.println(ourU.printString());
 	  ArrayList<String> ourEmp = (ArrayList<String>) ourU.getEmphases();
 	  for(String exEmp: ourEmp)
 	  {
@@ -84,7 +85,7 @@ public class DBLibraryDriver {
   
   public void run()
   {
-	  //this.testAddEditRemoveU();
+	  this.testAddEditRemoveU();
 	  
 	  this.testSaveSchool();
 	  

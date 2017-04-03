@@ -22,7 +22,7 @@ public class UserTests {
 
 	@Test
 	public void testUserStringStringStringStringCharChar() {
-		a = new User("Suzie","Queue","SIQ","suzE",'Y','u');
+		a = new User("Suzie","Queue","SIQ","suzE",'u','Y');
 		String p = a.getPassword();
 		assertEquals("Password is " + p,p, "suzE");
 		String u = a.getUsername();
@@ -37,7 +37,7 @@ public class UserTests {
 		assertEquals("Status is " + s,s, 'Y');
 	}
 
-	@Test
+	@Test (expected=Error.class)
 	public void testUserString() {
 		a = new User("Samantha");
 		String p = a.getPassword();

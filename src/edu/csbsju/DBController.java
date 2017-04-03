@@ -476,6 +476,10 @@ public class DBController {
 		 DBController d = new DBController();
 		 Account a = new Account("Jacob","Upton","Jsu","upton",'u','Y');
 		 a.displayStudent();
+		 UniversityDBLibrary univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
+		 d.removeEmphases("x", "Sports");
+		 d.removeEmphases("x", "Academics");
+		 univDBlib.university_deleteUniversity("x");
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();
 		 //ArrayList<Account> c = d.getAccounts();
