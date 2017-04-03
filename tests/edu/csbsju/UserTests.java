@@ -7,11 +7,12 @@ import org.junit.Test;
 
 public class UserTests {
 
-	private User a,b,c;
+	private User a,b;
 	@Before
 	public void setUp() throws Exception {
 		a = new User("Samantha","Schmidgall","SAS","sas21",'u','Y');
 		b = new User("Suzie","Queue","SIQ","suzE",'u','N');
+	}
 	@Test
 	public void testDisplayStudent() {
 		String expResult = "[FirstName=Samantha, LastName=Schmidgall, Username=SAS, Password=sas21, Type=u, Status=Y]\n";
@@ -55,25 +56,28 @@ public class UserTests {
 
 	@Test
 	public void testDisplaySavedSchoolsError() {
-		String e = a.displaySavedSchools();
-		assertEquals("error is: "+,e,e,"There are no saved Schools in your Saved Schools List.")
+		String e = a.displaySavedSchoolsError();
+		assertEquals("error is: "+e,e,"There are no saved Schools in your Saved Schools List.");
 		
 	}
 
 	@Test
 	public void testDisplaySearchError() {
 		String e = a.displaySearchError();
-		assertEquals("error is: "+,e,e,"No schools were found. Please try again.");
+		assertEquals("error is: "+e,e,"No schools were found. Please try again.");
 	}
 
 	@Test
 	public void testEditStudentProfile() {
 		
-		a.editStudentProfile()
-		this.setFirstName(firstName);
-		this.setLastName(lastName);
-		this.setPassword(password);
-	}
+		a.editStudentProfile("Sami","Samantha","passWord");
+		String fn = a.getFirstName();
+		assertEquals("firstname is "+fn,fn,"Sami");
+		String ln = a.getLastName();
+		assertEquals("lastname is "+ln,ln,"Samantha");
+		String pw = a.getPassword();
+		assertEquals("password is "+pw,pw,"passWord");
 
-}
+	}
+}	
 
