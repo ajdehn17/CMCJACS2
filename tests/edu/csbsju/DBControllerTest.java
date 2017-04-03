@@ -21,7 +21,7 @@ public class DBControllerTest {
 	}
 	@After
 	public void tearDown() throws Exception {
-		
+		db1.removeU("AUGSBURG2");
 	}
 	// Testing constructor 1
 	@Test
@@ -135,8 +135,16 @@ public class DBControllerTest {
 
 	@Test
 	public void testEditAccount() {
+		//Original account values "juser", "Jackson", "User","user", 'u', 'Y'
+		// Change first name
+		db1.editAccount("juser", "Billy", "User","user", 'u', 'Y');
+		// Test that first name was changed.
+		String expResult = "Billy";
+		assertEquals("Edited Account: " + expResult, 
+				expResult, db1.findAccount("juser").getFirstName());
 		
-		fail("Not yet implemented");
+		// Change first name back to Jackson
+		db1.editAccount("juser", "Jackson", "User","user", 'u', 'Y');
 	}
 
 	@Test
@@ -150,9 +158,6 @@ public class DBControllerTest {
 
 		db1.addUniversity(expResult);
 		db1.removeU("AUGSBURG2");
-		
-		
-		
 	}
 
 	@Test
@@ -200,7 +205,15 @@ public class DBControllerTest {
 
 	@Test
 	public void testConfirmEdit() {
-		fail("Not yet implemented");
+		boolean expResult = true;
+		boolean test = db1.confirmEdit();
+		assertEquals("Saved schools " + expResult, 
+				expResult, test);
+		
+		boolean expResult2 = false;
+		boolean test2 = db1.confirmEdit();
+		assertEquals("Saved schools " + expResult2, 
+				expResult2, test2);
 	}
 
 	@Test
@@ -247,8 +260,7 @@ public class DBControllerTest {
 		emp.add("EDUCATION");
 		emp.add("PERFORMING-ARTS");
 		
-		
-		University expResult = db1.getAUniversity("AUGSBURG");
+		String expResult = "WISCONSIN";
 				//new University("AUGSBURG", "MINNESOTA", "SMALL-CITY", "PRIVATE",
 				//10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
 		
@@ -260,8 +272,10 @@ public class DBControllerTest {
 		
 		
 
-			assertEquals("change State: " + expResult.getState(), 
-				expResult.getState(), updatedU.getState());
+			assertEquals("Change State: " + expResult, 
+				expResult, updatedU.getState());
+			
+			// Change university back to original
 			db1.editUniversity("AUGSBURG", "MINNESOTA", "SMALL-CITY", "PRIVATE", 10000,
 					43.0, 420, 490, 29991.0, 80.0, 4000,
 		            85.0, 50.0, 1, 3, 4);

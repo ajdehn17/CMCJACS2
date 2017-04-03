@@ -361,7 +361,7 @@ public class DBController {
 	  */
 	 public boolean confirmEdit(){
 		  String answer = JOptionPane.showInputDialog("Are You sure you want to confirm change? (Y/N)");
-		  if(answer == "y"|| answer == "Y"){
+		  if(answer.equals("y") || answer.equals("Y")){
 			  return true;
 		  }
 		  else{
@@ -491,6 +491,8 @@ public class DBController {
 		 System.out.println(test.printString());
 		 
 		 System.out.println(d.findAccount("JuSer").getStatus());
+		 System.out.println(d.findAccount("JuSer").getFirstName());
+		 System.out.println(d.findAccount("JuSer").getLastName());
 		 
 		 /**
 		 

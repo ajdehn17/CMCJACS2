@@ -42,12 +42,27 @@ public class UniversityTest {
 	
 	@Test
 	public void testUniversityStringStringStringStringIntDoubleIntIntDoubleDoubleIntDoubleDoubleIntIntIntListOfString() {
-		fail("Not yet implemented");
+		University local;
+		ArrayList<String> lList;
+		lList = new ArrayList<String>();
+		lList.add("PURPLE");
+		lList.add("SPORTS");
+		local = new University("University of Saint Thomas", "MA", "URBAN", "PRIVATE", 1010,
+				48.8, 570, 450, 3000, 49245, 13000, 67.1, 7.4, 3, 4, 1,
+				lList);
+		
+		String expResult = b.printString();
+		assertEquals("University Name " + expResult, 
+				expResult, local.printString());
 	}
 
 	@Test
 	public void testUniversityString() {
-		fail("Not yet implemented");
+		University local = new University("X");
+		
+		String expResult = c.printString();
+		assertEquals("University Name " + expResult, 
+				expResult, local.printString());
 	}
 
 	@Test
@@ -109,12 +124,12 @@ public class UniversityTest {
 		b.setState("MN");
 		String expResult = "MN";
 		assertEquals("State: " + expResult, 
-				expResult, b.getLocation());
+				expResult, b.getState());
 		// Test upperCase functions
-		a.setLocation("Ms");
+		a.setState("Ms");
 		String expResult2 = "MS";
 		assertEquals("State: " + expResult2, 
-				expResult2, a.getLocation());
+				expResult2, a.getState());
 	}
 	
 	@Test
@@ -322,7 +337,7 @@ public class UniversityTest {
 
 	@Test
 	public void testGetNumberOfApplicants() {
-		int expResult = 40123;
+		int expResult = 38000;
 		assertEquals("Number of Applicants: " + expResult, 
 				expResult, a.getNumberOfApplicants(), 0);
 	}
@@ -374,9 +389,9 @@ public class UniversityTest {
 				expResult2, a.getPercentAdmitted(), 0);
 		
 		a.setPercentAdmitted(100.0);
-		double expResult3 = 101;
+		double expResult3 = 100;
 		assertEquals("Financial Aid: " + expResult3, 
-				expResult2, a.getPercentAdmitted(), 0);
+				expResult3, a.getPercentAdmitted(), 0);
 	}
 
 	@Test
@@ -409,7 +424,7 @@ public class UniversityTest {
 				expResult2, a.getPercentEnrolled(), 0);
 		
 		a.setPercentEnrolled(100.0);
-		double expResult3 = 101;
+		double expResult3 = 100;
 		assertEquals("Financial Aid: " + expResult3, 
 				expResult3, a.getPercentEnrolled(), 0);
 	}
@@ -506,6 +521,7 @@ public class UniversityTest {
 
 	@Test
 	public void testPrintString() {
+		
 		fail("Not yet implemented");
 	}
 
@@ -514,7 +530,7 @@ public class UniversityTest {
 		ArrayList<String> testList = new ArrayList<String>();
 		testList.add("PURPLE");
 		testList.add("SPORTS");
-		testList.add("Marketing");
+		testList.add("MARKETING");
 		
 		b.addEmphases("Marketing");
 		assertEquals("Emphases: " + testList, 
@@ -533,12 +549,24 @@ public class UniversityTest {
 
 	@Test
 	public void testEditUniversity() {
-		fail("Not yet implemented");
+		a.editUniversity("HARVARD", "Minnesota", "URBAN", "PRIVATE", 1010,
+				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3);
+		
+		String expResult = "MINNESOTA";
+		
+		assertEquals("Edited university: " + expResult, 
+				a.getState(), expResult);
 	}
 
 	@Test
 	public void testAddUniversity() {
-		fail("Not yet implemented");
+		University addedU = a.addUniversity("HARVARD2", "Minnesota", "URBAN", "PRIVATE", 1010,
+				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3);
+		
+		String expResult = "HARVARD2";
+		
+		assertEquals("Added university: " + expResult, 
+				addedU.getUniversityName(), expResult);
 	}
 
 }

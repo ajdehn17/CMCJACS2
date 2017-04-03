@@ -9,28 +9,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UniversityControllerTest {
-	private University a, b, c;
-	ArrayList<String> aList, bList;
+	private UniversityController a;
+	private DBController db1;
 	
 	@Before
 	public void setUp() throws Exception {
-		aList = new ArrayList<String>();
-		aList.add("SCHOOL");
-		aList.add("ENGINEERING");
-		a = new University("HARVARD", "MA", "URBAN", "PRIVATE", 1010,
-				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3,
-				aList);
-		bList = new ArrayList<String>();
-		bList.add("PURPLE");
-		bList.add("SPORTS");
-		a = new University("University of Saint Thomas", "MA", "URBAN", "PRIVATE", 1010,
-				48.8, 570, 450, 3000, 49245, 13000, 67.1, 72.4, 3, 4, 1,
-				bList);
-		c = new University("X");
+		a = new UniversityController();
+		db1 = new DBController();
 	}
 	
 	@Test
 	public void testUniversityController() {
+		
 		assertTrue("TEST", 1==1);
 		//fail("Not yet implemented");
 	}
@@ -47,7 +37,28 @@ public class UniversityControllerTest {
 
 	@Test
 	public void testAddEmphases() {
-		fail("Not yet implemented");
+		ArrayList<String> expResult = new ArrayList<String>();
+		expResult.add("BUSINESS-ADMINISTRATION");
+		expResult.add("EDUCATION");
+		expResult.add("PERFORMING-ARTS");
+		expResult.add("MIS");
+		
+		a.addEmphases("AUGSBURG", "MIS");
+
+		University testU = db1.getAUniversity("AUGSBURG");
+		ArrayList<String> testEmp = (ArrayList<String>) testU.getEmphases();
+		String eResult = expResult.toString();
+		String aResult = expResult.toString();
+		
+		for(String val: testEmp)
+		{
+			assertEquals("Add Emphases: " + expResult, 
+				expResult.contains(val), testEmp.contains(val));
+			assertEquals("Add Emphases: " + expResult, 
+					expResult.size(), testEmp.size());
+		}
+		
+		a.removeEmphases("AUGSBURG", "MIS");
 	}
 
 	@Test
