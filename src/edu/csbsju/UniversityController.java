@@ -113,8 +113,6 @@ public class UniversityController {
 	   * the specified emphasis already exists for the specified school
 	   */
 	  public int removeEmphases(String universityName,String emphases ){
-		University u = d.getAUniversity(universityName);
-		u.removeEmphases(emphases);
 	    return d.removeEmphases(universityName, emphases);
 	  }
 	

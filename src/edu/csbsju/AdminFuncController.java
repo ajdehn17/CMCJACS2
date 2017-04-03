@@ -93,13 +93,14 @@ public class AdminFuncController {
    * This is a method used to display the accounts of all of the Account
    * objects that are in the database.
    */
-  public void displayAccounts(){
+  public String displayAccounts(){
     ArrayList<Account> a = this.getAccounts();
     String s = "";
     for(Account u: a){
       u.displayStudent();
       s = s + u.displayStudent(); 
     }
+    return s;
   }
   
   /**
@@ -115,11 +116,13 @@ public class AdminFuncController {
    * This is a method used to display the accounts of all of the University
    * objects that are in the database.
    */
-  public void displayUniversities(){
+  public String displayUniversities(){
     ArrayList<University> a = this.getUniversities();
+    String k = "";
     for(University u: a){
-      u.printString();
+    	k = k = u.printString();
     }
+    return k;
   }
   
   public Admin getAdmin(){
@@ -132,8 +135,10 @@ public class AdminFuncController {
    * deactivated.
    * @param a an Account object
    */
-  public void deactivate(Account a){
+  public char deactivate(Account a){
     d.deactivate(a);
+    return 'N';
+    
   }
   
   /**
@@ -201,7 +206,7 @@ public class AdminFuncController {
    * @param type the type of the account
    * @param status the status of the account
    */
-  public void editAccount(String firstname, String lastname, String username, String password, char type, char status){
+  public boolean editAccount(String firstname, String lastname, String username, String password, char type, char status){
     boolean b = d.editAccount(username, firstname, lastname, password, type, status);
     admin.editAccount(username, firstname, lastname, password, type, status);
     if(b){
@@ -210,6 +215,7 @@ public class AdminFuncController {
     else{
 	   System.out.println("The Change was unsuccessful");
     }
+    return b;
    }
   
   /**
