@@ -480,6 +480,16 @@ public class DBController {
 		 d.removeEmphases("x", "Sports");
 		 d.removeEmphases("x", "Academics");
 		 univDBlib.university_deleteUniversity("x");
+		 
+		 University test = d.getAUniversity("AUGSBURG");
+		 System.out.println(test.printString());
+		 
+		 ArrayList<String> actResult = (ArrayList<String>) d.getUserSavedSchools("juser");
+		 for(String s: actResult)
+		 {
+			 System.out.println(s);
+		 }
+		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();
 		 //ArrayList<Account> c = d.getAccounts();
