@@ -117,8 +117,8 @@ public class AccountUI {
 	  * @return a boolean. True if the user confirms the edit they are about 
 	  * to perform
 	  */
-	 public boolean confirmEdit(){
-		 return accountFunc.confirmEdit();
+	 public boolean confirmEdit(String answer){
+		 return accountFunc.confirmEdit(answer);
 	 }
 	 
 	 /**
