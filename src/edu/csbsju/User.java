@@ -22,7 +22,7 @@ public class User extends Account {
 	 * @param status the status of the admin
 	 * @param type the type of the admin
 	 */
-	public User(String firstName, String lastName, String username, String password, char status, char type) {
+	public User(String firstName, String lastName, String username, String password, char type,  char status) {
 		super(firstName, lastName, username, password, type, status);
 	}
 
@@ -47,18 +47,21 @@ public class User extends Account {
 	 * displays error if displays fails. If there is an error in getting the saved
 	 * Schools of a User, then this error is displayed
 	 */
-	public void displaySavedSchoolsError()
+	public String displaySavedSchoolsError()
 	{
 		System.out.println("There are no saved Schools in your Saved Schools List.");
+		return "There are no saved Schools in your Saved Schools List.";
 	}
 	
 	/**
 	 * displays search error. If there is an error in searching, then this error
 	 * is displayed to the user.
 	 */
-	public void displaySearchError()
+	public String displaySearchError()
 	{
 		System.out.println("No schools were found. Please try again.");
+		return "No schools were found. Please try again.";
+		
 	}
 	
 	/**

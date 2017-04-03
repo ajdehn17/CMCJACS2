@@ -17,8 +17,8 @@ public class AccountTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		a = new Account("Jacob","Upton","JSU","Jsu--2019",'u','Y');
-		b = new Account("Jesse","Upton","JWU","jesse",'a','N');
+		a = new Account("Jacob","Upton","JSU","Jsu--2019",'Y','u');
+		b = new Account("Jesse","Upton","JWU","jesse",'N','u');
 	}
 
 	/**
