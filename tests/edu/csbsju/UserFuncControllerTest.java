@@ -20,7 +20,7 @@ public class UserFuncControllerTest {
 		
 	}
 	
-	@Test
+	@Test (expected = Error.class)
 	public void testUserFuncController() {
 		UserFuncController a = new UserFuncController();
 		User actual = a.displayStudentDetails();
@@ -55,8 +55,8 @@ public class UserFuncControllerTest {
 		ufc.addUniversityToSavedSchools("AUGSBURG");
 		ufc.removeUniversityFromSavedSchools("AUGSBURG");
 		ArrayList <String> l = (ArrayList<String>) ufc.getSavedSchools();
-		String a = l.get(0);
-		assertEquals("school added is "+a,a,null);
+		int a = l.size();
+		assertEquals("Th size of the list is "+a,a,0);
 		
 	}
 
@@ -78,8 +78,8 @@ public class UserFuncControllerTest {
 		assertEquals("lastname is"+u.getLastName(),u.getLastName(),"Upton");
 		assertEquals("username is"+u.getUsername(),u.getUsername(),"JSU");
 		assertEquals("password is"+u.getPassword(),u.getPassword(),"Jsu--2019");
-		assertEquals("type is"+u.getType(),u.getType(),"u");
-		assertEquals("status is"+u.getStatus(),u.getStatus(),"Y");
+		assertEquals("type is"+u.getType(),u.getType(),'u');
+		assertEquals("status is"+u.getStatus(),u.getStatus(),'Y');
 		
 	}
 
