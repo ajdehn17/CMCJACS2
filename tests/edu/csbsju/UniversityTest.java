@@ -521,8 +521,13 @@ public class UniversityTest {
 
 	@Test
 	public void testPrintString() {
-		
-		fail("Not yet implemented");
+		String ex =  ("Name: \t\t\t" + a.getUniversityName() + "\nLocation: \t\t" + a.getLocation() + "\nState: \t\t\t" + a.getState()
+				+ "\nControl: \t\t" + a.getControl() + "\nNumber Of Students: \t" + a.getNumberOfStudents() + "\nPercent Female: \t" + a.getPercentFemale()
+				+ "\nSAT Verbal: \t\t" + a.getSatVerbal() + "\nSAT Math: \t\t" + a.getSatMath() + "\nExpenses: \t\t" + a.getExpenses() + "\nfinancialAid: \t\t"
+				+ a.getFinancialAid() + "\nNumber Of Applicants: \t" + a.getNumberOfApplicants() + "\nPercent Admitted: \t" + a.getPercentAdmitted()
+				+ "\nPercent Enrolled: \t" + a.getPercentEnrolled() + "\nAcademic Scale: \t" + a.getAcademicScale() + "\nSocial Scale: \t\t"
+				+ a.getSocialScale() + "\nQuality Of Life: \t" + a.getQualityOfLife() + "\nEmphases: \t\t" + a.getEmphases() + "]\n");
+				assertEquals("They are equal", ex, a.printString());
 	}
 
 	@Test
@@ -542,7 +547,7 @@ public class UniversityTest {
 		ArrayList<String> testList = new ArrayList<String>();
 		testList.add("PURPLE");
 		
-		b.removeEmphases("SPOrts");
+		b.removeEmphases("SPORTS");
 		assertEquals("Emphases: " + testList, 
 				testList, b.getEmphases());
 	}

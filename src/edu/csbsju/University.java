@@ -540,11 +540,13 @@ public class University {
 	 * @param emp String representing the emphases
 	 */
 	public void removeEmphases(String emp){
+		ArrayList<String> newList = new ArrayList<String>();
 		for(String e:emphases){
-			if(emp.equalsIgnoreCase(e)){
-				emphases.remove(e);
+			if(!emp.equals(e)){
+				newList.add(e);
 			}
 		}
+		this.emphases = newList;
 	}
 	
 	/**
