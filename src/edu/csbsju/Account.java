@@ -13,7 +13,7 @@ package edu.csbsju;
  */
 public class Account {
  
-	 /**
+	/**
 	  * This instance variable is a String that represents the 
 	  * first name of the Account object
 	  */
@@ -165,6 +165,22 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	/**
+	  * This method sets the status character to the parameter value
+	  * @param s character indicating the status of the user
+	  */
+	 public void setStatus(char s){
+		 this.status = s;
+	 }
+	 
+	 /**
+	  * This method sets the type character to the parameter value
+	  * @param t character indicating the type of the user
+	  */
+	 public void setType(char t){
+		 this.type = t;
+	 }
 
 	
 	 /**
@@ -220,15 +236,15 @@ public class Account {
 	  * They will be brought to their prospective screen
 	  * @param t char The type (admin or user) of the Account object
 	  */
-		public String displayMenu(char t){
-			 if(t == 'u'){
-				 return"\tS: Search For Schools\n\tM: Manage My Saved Schools\n\tP: Manage My Profile\n\tQ: To Quit\n";
-			 }
-			 else if(t == 'a'){
-				    return("\tU: Manage Universities\n\tZ: Manage Users\n\tQ: To Quit");
-				}
-			 return null;
+	 public String displayMenu(char t){
+		 if(t == 'u'){
+			 return"\tS: Search For Schools\n\tM: Manage My Saved Schools\n\tP: Manage My Profile\n\tQ: To Quit\n";
 		 }
+		 else if(t == 'a'){
+			    return("\tU: Manage Universities\n\tZ: Manage Users\n\tQ: To Quit");
+			}
+		 return null;
+	 }
 	 
 	 /**
 	  * This method is used when there is an error in the login process. This
@@ -237,7 +253,7 @@ public class Account {
 	  * username or password
 	  */
 	 public String displayLoginError(){
-		 return("There was an error Loggin in. Please Try again.");
+		 return "There was an error Loggin in. Please Try again.";
 	 }
 	 
 	 /**
@@ -261,6 +277,7 @@ public class Account {
 	  * @return char a character representing the type of the Account
 	  */
 	 public char returnType(){
+
 		 return this.getType();
 	 }
 	 
