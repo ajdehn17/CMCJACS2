@@ -2,9 +2,8 @@ package edu.csbsju;
 
 import static org.junit.Assert.*;
 
-import java.awt.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -104,8 +103,8 @@ public class UserFuncControllerTest {
 
 	@Test
 	public void testGetFiveMatches() {
-		List<String> emphases = Arrays.asList("ENGINEERING");
-		University u = new University("UNIVERSITY OF MINNESOTA","MINNESOTA","URBAN","STATE",40000,60000,40,50,400,500,500,600,13000,15000,40,60,8000,10000,80,90,55,65,3,5,3,5,3,5,emphases);
+		DBController d = new DBController();
+		University u = d.getAUniversity("UNIVERSITY OF MINNESOTA");
 		ArrayList<University> l = (ArrayList<University>) ufc.getFiveMatches(u);
 		assertEquals("list length is "+l.size(),l.size(),5);
 	}
