@@ -24,43 +24,43 @@ public class AdminTest {
 
 	@Test
 	public void testAdminStringStringStringStringCharChar() {
-		Assert.assertTrue("name is", admin2.getFirstName() == "Casey");
-	     Assert.assertTrue("last name is", admin2.getLastName() == "Zins");
-	     Assert.assertTrue("username is", admin2.getUsername() == "czins");
-	     Assert.assertTrue("password is", admin2.getPassword().equals("pass"));
+		assertTrue("name is", admin2.getFirstName() == "Casey");
+	    assertTrue("last name is", admin2.getLastName() == "Zins");
+	    assertTrue("username is", admin2.getUsername() == "czins");
+	     assertTrue("password is", admin2.getPassword().equals("pass"));
 	}
 
 	@Test
 	public void testAdminString() {
-	     Assert.assertTrue("username is null", admin.getUsername() == "cjzins");
+	     assertTrue("username is null", admin.getUsername() == "cjzins");
 	}
 
 	@Test
 	public void testSetStatus() {
 		 admin2.setStatus('N');
-		 Assert.assertTrue("status is N", admin2.isActive() == false);
+		 assertTrue("status is N", admin2.getStatus() == 'N');
 	}
 
 	@Test
 	public void testSetType() {
 		admin2.setType('u');
-	    Assert.assertTrue("type is u", admin2.returnType() == 'u');
+	    assertTrue("type is u", admin2.returnType() == 'u');
 	}
 
 	@Test
 	public void testEditAccount() {
 		admin.editAccount("Cas", "zi", "czins", "pa", 'N', 'a');
-		Assert.assertTrue("name is", admin.getFirstName()=="Cas");
-		Assert.assertTrue("last name is", admin.getLastName()=="zi");
-		Assert.assertTrue("password is", admin.getPassword()=="pa");
+		assertTrue("name is", admin.getFirstName()=="Cas");
+		assertTrue("last name is", admin.getLastName()=="zi");
+		assertTrue("password is", admin.getPassword()=="pa");
 	}
 
 	@Test
 	public void testAddAccount() {
 		Account a = admin.addAccount("lori", "zins", "lvzins", "pass", 'Y', 'a');
-		Assert.assertTrue("a name is", a.getFirstName()=="lori");
-		Assert.assertTrue("a last name is", a.getLastName()=="zins");
-		Assert.assertTrue("a password is", a.getPassword()=="pass");
+		assertTrue("a name is", a.getFirstName()=="lori");
+		assertTrue("a last name is", a.getLastName()=="zins");
+		assertTrue("a password is", a.getPassword()=="pass");
 		
 	}
 

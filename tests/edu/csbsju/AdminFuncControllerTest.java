@@ -14,8 +14,9 @@ public class AdminFuncControllerTest {
 	   * a Admin object instance variable. Used to store the current
 	   * admin object, and to be able to access methods in the Admin class
 	   */
-	  private Admin admin;
-	  private Admin admin2;
+	  private AdminFuncController a;
+	  private AdminFuncController a2;
+	  private Admin ad;
 	  /**
 	   * This is a DBController object used to access the Database
 	   */
@@ -25,42 +26,42 @@ public class AdminFuncControllerTest {
 	   * in the university Controller
 	   */
 	  private UniversityController uc;
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
-		admin = new Admin("cjzins");
-		 admin2 = new Admin("Casey", "Zins", "czins", "pass", 'Y', 'u');
+		uc = new U
+		d = new DBController();
+		ad = new Admin("Casey", "Zins", "czins", "pass", 'Y', 'u');
+		a = new AdminFuncController();
+		a2 = new AdminFuncController(ad);
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		d.r
 	}
 
 	@Test
 	public void testAdminFuncController() {
-		fail("Not yet implemented");
+		Admin actual = a.getAdmin();
+		assertEquals("The account object is null", null, actual);
 	}
 
 	@Test
 	public void testAdminFuncControllerAdmin() {
-		fail("Not yet implemented");
+		Admin actual =a2.getAdmin();
+		assertEquals("The account object is null", ad, actual);
 	}
 
 	@Test
 	public void testGetAccounts() {
-		fail("Not yet implemented");
+		assertTrue("all accounts retrieved", a.getAccounts() ==d.getAccounts());
 	}
 
 	@Test
 	public void testAddUniversity() {
-		fail("Not yet implemented");
+		admin.addUniversity("SJU", "MN", "COLLEGEVILLE", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "));
+		Assert.assertTrue("UniversityAdded", d.getUniversity("SJU").getUniversityName()== "SJU");
 	}
 
 	@Test

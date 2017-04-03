@@ -95,8 +95,10 @@ public class AdminFuncController {
    */
   public void displayAccounts(){
     ArrayList<Account> a = this.getAccounts();
+    String s = "";
     for(Account u: a){
       u.displayStudent();
+      s = s + u.displayStudent(); 
     }
   }
   
@@ -118,6 +120,10 @@ public class AdminFuncController {
     for(University u: a){
       u.printString();
     }
+  }
+  
+  public Admin getAdmin(){
+	  return admin;
   }
   
   /**
