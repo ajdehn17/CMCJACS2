@@ -248,7 +248,7 @@ public class Account {
 	  * @return Boolean, true if the Account object is active
 	  */
 	 public boolean isActive(){
-		 if(this.getType() == ('Y'))
+		 if(this.getStatus() == ('Y'))
 			 return true;
 		 else
 			 return false;

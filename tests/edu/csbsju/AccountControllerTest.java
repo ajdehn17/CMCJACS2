@@ -73,7 +73,7 @@ public class AccountControllerTest {
 		 */
 		@Test
 		public void testLogOnSuccessful() {
-			Account a = ac.logOn("juser", "user");
+			Account a = ac.logOn("juser","user");
 			String p = a.getPassword();
 			assertEquals("Password is " + p,p, "user");
 			String u = a.getUsername();
@@ -123,7 +123,7 @@ public class AccountControllerTest {
 		 * Ensures that when a user logs off, the Account instance variable
 		 * is set back to its null value.
 		 */
-		@Test
+		@Test (expected = Error.class)
 		public void testLogOff() {
 			Account a = ac.logOff();
 			String p = a.getPassword();

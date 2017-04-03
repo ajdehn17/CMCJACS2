@@ -532,7 +532,7 @@ public class University {
 				+ "\nControl: \t\t" + control + "\nNumber Of Students: \t" + numberOfStudents + "\nPercent Female: \t" + percentFemale
 				+ "\nSAT Verbal: \t\t" + satVerbal + "\nSAT Math: \t\t" + satMath + "\nExpenses: \t\t" + expenses + "\nfinancialAid: \t\t"
 				+ financialAid + "\nNumber Of Applicants: \t" + numberOfApplicants + "\nPercent Admitted: \t" + percentAdmitted
-				+ "\nPercen tEnrolled: \t" + percentEnrolled + "\nAcademic Scale: \t" + academicScale + "\nSocial Scale: \t\t"
+				+ "\nPercent Enrolled: \t" + percentEnrolled + "\nAcademic Scale: \t" + academicScale + "\nSocial Scale: \t\t"
 				+ socialScale + "\nQuality Of Life: \t" + qualityOfLife + "\nEmphases: \t\t" + emphases + "]\n");
 	}
 	

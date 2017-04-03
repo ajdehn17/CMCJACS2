@@ -120,10 +120,10 @@ public class DBController {
 			 String username = x[i][2];
 			 String password = x[i][3];
 			 String z = x[i][4];
-			 char status = z.charAt(0);
+			 char type = z.charAt(0);
 			 String y = x[i][5];
-			 char type = y.charAt(0);
-			 Account a = new Account(firstName, lastName, username, password, status, type);
+			 char status = y.charAt(0);
+			 Account a = new Account(firstName, lastName, username, password, type, status);
 			 s.add(a);
 		 }
 		 return s;
@@ -474,8 +474,8 @@ public class DBController {
 	  */
 	 public static void main(String args[]){
 		 DBController d = new DBController();
-		 Account a = new Account("Jacob","Upton","Jsu","upton",'u','Y');
-		 a.displayStudent();
+		 Account a = d.findAccount("juser");
+		 System.out.println(a.displayStudent());
 		 UniversityDBLibrary univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
 		 d.removeEmphases("x", "Sports");
 		 d.removeEmphases("x", "Academics");

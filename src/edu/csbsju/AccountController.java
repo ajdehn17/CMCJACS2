@@ -67,6 +67,7 @@ public class AccountController {
 	  * null if there is no account found.
 	  */
 	 public Account logOn(String u, String p){
+		 Account acct = null;
 		 boolean b = d.checkUsername(u);
 		 if(b){
 			 String p2 = d.findPassword(u);
@@ -74,23 +75,24 @@ public class AccountController {
 				 ArrayList<Account> l = d.getAccounts();
 				 for(Account x:l){
 					 if(x.getUsername().equals(u)){
-						 this.a = x;
-						 boolean active = a.isActive();
+						 boolean active = x.isActive();
 						 if(active){
+							 this.a = x;
 							 a.logOn(a);
 							 return a;}
 						 else
-							 return null;
+							 throw new Error("The account provided is not Active");
 					 }
 				 }
-				 return null;
+				 this.a = null;
+				 return a;
 			 }
 			 else{
-				 return null;
+				 throw new Error("The Password does not match the username provided");
 			 }
 		 }
 		 else{
-    	     return null;
+			 throw new Error("The Userame is not valid");
 		 }
 	 }
 	 
@@ -113,6 +115,9 @@ public class AccountController {
 	  */
 	 public University getAUniversity(String name){
 		 University u = d.getAUniversity(name);
+		 if(u == null){
+			 throw new Error("The university name entered does not exist in the Database.");
+		 }
 		 return u;
 	 }
 	 
