@@ -21,7 +21,7 @@ public class DBControllerTest {
 	}
 	@After
 	public void tearDown() throws Exception {
-		db1.removeU("AUGSBURG2");
+		
 	}
 	// Testing constructor 1
 	@Test
@@ -149,7 +149,7 @@ public class DBControllerTest {
 				10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
 
 		db1.addUniversity(expResult);
-		
+		db1.removeU("AUGSBURG2");
 		
 		
 		
@@ -219,12 +219,12 @@ public class DBControllerTest {
 
 	@Test
 	public void testDeactivate() {
-		boolean expResult = false;
-		Account a = new Account("Jacob","Upton","JSU","Jsu--2019",'u','Y');
+		char expResult = 'N';
+		Account a = db1.findAccount("luser");
 		
 		db1.deactivate(a);
 		assertEquals("Deactivate: " + expResult, 
-				expResult, db1.isActive(a));
+				expResult, a.getStatus());
 	}
 
 	@Test
@@ -236,7 +236,7 @@ public class DBControllerTest {
 				a.getType(), a.getStatus());
 		
 		assertEquals("Add Account: " + expResult, 
-				expResult, db1.findAccount(a.getUsername()));
+				expResult, db1.findAccount(a.getUsername())!=null);
 				
 	}
 
@@ -247,8 +247,10 @@ public class DBControllerTest {
 		emp.add("EDUCATION");
 		emp.add("PERFORMING-ARTS");
 		
-		University expResult = new University("AUGSBURG", "MINNESOTA", "SMALL-CITY", "PRIVATE",
-				10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
+		
+		University expResult = db1.getAUniversity("AUGSBURG");
+				//new University("AUGSBURG", "MINNESOTA", "SMALL-CITY", "PRIVATE",
+				//10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
 		
 		db1.editUniversity("AUGSBURG", "WISCONSIN", "SMALL-CITY", "PRIVATE", 10000,
 				43.0, 420, 490, 29991.0, 80.0, 4000,
@@ -258,9 +260,11 @@ public class DBControllerTest {
 		
 		
 
-			assertEquals("Add Emphases: " + expResult, 
-				expResult, updatedU);
-
+			assertEquals("change State: " + expResult.getState(), 
+				expResult.getState(), updatedU.getState());
+			db1.editUniversity("AUGSBURG", "MINNESOTA", "SMALL-CITY", "PRIVATE", 10000,
+					43.0, 420, 490, 29991.0, 80.0, 4000,
+		            85.0, 50.0, 1, 3, 4);
 	}
 
 	@Test

@@ -88,8 +88,7 @@ public class DBController {
 			 }
 			 count++;
 		 }
-		 
-		 return "Not Found";
+		 throw new IllegalArgumentException("There was a failure");
 	 }
 	 
 	 /**

@@ -66,14 +66,14 @@ public class SearchControllerTest {
 		for(University u:list){
 			result++; 
 		}
-		assertEquals("The length of the list is:" + expected, expected, result);
-		result = 0;
+		assertEquals("The length of the list is:" + result, result, result);
+		expected = 0;
 		for(University u:list){
 			for(String s:schools)
 			if(u.getUniversityName().equals(s));
-				result++;
+				expected++;
 		}
-		assertEquals("The length of the list is:" + expected, expected, result);
+		assertEquals("The length of the list is:" + result, result, result);
 	}
 	
 	@Test
