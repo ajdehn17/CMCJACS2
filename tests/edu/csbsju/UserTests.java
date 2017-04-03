@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserTest {
+public class UserTests {
+
 	private User a,b,c;
 	@Before
 	public void setUp() throws Exception {
@@ -75,3 +76,4 @@ public class UserTest {
 	}
 
 }
+

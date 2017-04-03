@@ -59,6 +59,7 @@ public class User extends Account {
 	public void displaySearchError()
 	{
 		System.out.println("No schools were found. Please try again.");
+		
 	}
 	
 	/**
