@@ -98,8 +98,9 @@ public class AccountController {
 	  * This method does not take any parameters. It logs the current
 	  * Account object out of the system.
 	  */
-	 public void logOff(){
+	 public Account logOff(){
 		 a.logOff();
+		 return a;
 	 }
 	 
 	 /**
@@ -121,9 +122,9 @@ public class AccountController {
 	  * those on the screen for the user.
 	  * @param name University object
 	  */
-	 public void displayUniversity(String name){
+	 public String displayUniversity(String name){
 		 University u = this.getAUniversity(name);
-		 u.printString();
+		 return u.printString();
 	 }
 	 
 	 /**
@@ -133,15 +134,15 @@ public class AccountController {
 	  * another person's Account information.
 	  * @return boolean, if it is confirmed it is true
 	  */
-	 public boolean confirmEdit(){
-		  String answer = JOptionPane.showInputDialog("Are You sure you want to confirm change? (Y/N)");
-		  if(answer == "y"|| answer == "Y"){
+	 public boolean confirmEdit(String answer){
+		 if(answer == "y"|| answer == "Y"){
 			  return true;
 		  }
-		  else{
-			  JOptionPane.showMessageDialog(null,"The changes were not saved");
+		  else if(answer == "n" || answer == "N"){
 			  return false;
 		  }
+		  else
+			  throw new Error("That was not a valid answer");
 	 }
 	 
 	 /**

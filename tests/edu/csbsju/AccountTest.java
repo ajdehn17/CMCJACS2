@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package edu.csbsju;
 
 import static org.junit.Assert.*;
