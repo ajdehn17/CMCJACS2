@@ -225,16 +225,7 @@ public class University {
 	 * @param state the state to set
 	 */
 	public void setState(String state) {
-		if(state.length()==2)
-		{
 			this.state = state.toUpperCase();
-		}
-		else
-		{
-			throw new IllegalArgumentException("State must be 2 characters.");
-
-		}
-		
 	}
 	
 	/**

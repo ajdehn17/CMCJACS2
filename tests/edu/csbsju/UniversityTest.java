@@ -116,11 +116,6 @@ public class UniversityTest {
 		assertEquals("State: " + expResult2, 
 				expResult2, a.getLocation());
 	}
-	@Test(expected = IllegalArgumentException.class)
-	public void testSetStateInvalid()
-	{
-		b.setLocation("Minnesota");
-	}
 	
 	@Test
 	public void testGetControl() {

@@ -64,7 +64,7 @@ public class SearchControllerTest {
 		List<String> schools = Arrays.asList("UNIVERSITY OF MINNESOTA","AUGSBURG");
 		List<University> list = sc.search(null,"MINNESOTA",null,null,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null);
 		for(University u:list){
-			result++;
+			result++; 
 		}
 		assertEquals("The length of the list is:" + expected, expected, result);
 		result = 0;
