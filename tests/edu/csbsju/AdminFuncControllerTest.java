@@ -118,15 +118,31 @@ public class AdminFuncControllerTest {
 		Account a = a2.viewAccount("nadmin");
 		assertEquals("account found",a.getUsername(), "nadmin");
 	}
-
+	@Test
+	public void testDeactivate(){
+		a2.deactivate(ad);
+		char b =ad.getStatus();
+		assertEquals("deactivate", b, 'N');
+		
+	}
+	@Test 
+	public void testEditUniversity(){
+				int i = 0;
+				a2.addUniversity("PPP", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
+				a2.editUniversity("PPP", "WY", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
+				assertEquals("editedUniversity", d.getAUniversity("PPP").getState(), "WY");
+				univDBlib.university_deleteUniversity("PPP");
+			}
 	@Test
 	public void testEditAccount() {
-		
+		boolean k = a2.editAccount("Casey", "Booth", "czins", "pass", 'a', 'Y');
+		assertEquals("account edited", k, true);
 	}
 
 	@Test
 	public void testAddAccount() {
-		
+		a2.addAccount("Carly", "Ciccati", "cmciccati", "p", 'a', 'Y');
+		d.findAccount("cmciccati");
 	}
 
 	@Test
