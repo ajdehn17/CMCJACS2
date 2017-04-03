@@ -40,13 +40,6 @@ public class AdminTest {
 		 admin2.setStatus('N');
 		 assertTrue("status is N", admin2.getStatus() == 'N');
 		 char exp = admin2.getStatus();
-		 System.out.println(exp);
-		 assertEquals("Status is N", exp, 'N');
-		 char exp = admin2.getStatus();
-		 System.out.println(exp);
-		 assertEquals("Status is N", exp, 'N');
-		 char exp = admin2.getStatus();
-		 System.out.println(exp);
 		 assertEquals("Status is N", exp, 'N');
 	}
 
@@ -54,10 +47,6 @@ public class AdminTest {
 	public void testSetType() {
 		admin2.setType('u');
 	    assertTrue("type is u", admin2.returnType() == 'u');
-		char exp = admin2.returnType();
-	    assertEquals("type is u", exp, 'u');
-		char exp = admin2.returnType();
-	    assertEquals("type is u", exp, 'u');
 		char exp = admin2.returnType();
 	    assertEquals("type is u", exp, 'u');
 	}

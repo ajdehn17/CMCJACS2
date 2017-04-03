@@ -93,13 +93,14 @@ public class AdminFuncController {
    * This is a method used to display the accounts of all of the Account
    * objects that are in the database.
    */
-  public void displayAccounts(){
+  public String displayAccounts(){
     ArrayList<Account> a = this.getAccounts();
     String s = "";
     for(Account u: a){
       u.displayStudent();
       s = s + u.displayStudent(); 
     }
+    return s;
   }
   
   /**
@@ -115,11 +116,14 @@ public class AdminFuncController {
    * This is a method used to display the accounts of all of the University
    * objects that are in the database.
    */
-  public void displayUniversities(){
+  public String displayUniversities(){
     ArrayList<University> a = this.getUniversities();
+    String k = "";
     for(University u: a){
       u.printString();
+      k = k + u;
     }
+    return k;
   }
   
   public Admin getAdmin(){
@@ -134,6 +138,7 @@ public class AdminFuncController {
    */
   public void deactivate(Account a){
     d.deactivate(a);
+    
   }
   
   /**

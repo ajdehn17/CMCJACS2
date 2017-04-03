@@ -2,11 +2,15 @@ package edu.csbsju;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class AdminFuncControllerTest {
 
@@ -17,10 +21,12 @@ public class AdminFuncControllerTest {
 	  private AdminFuncController a;
 	  private AdminFuncController a2;
 	  private Admin ad;
+	  private UniversityDBLibrary univDBlib;
 	  /**
 	   * This is a DBController object used to access the Database
 	   */
 	  private DBController d;
+	 
 	  /**
 	   * This is a universityController object used to access methods 
 	   * in the university Controller
@@ -28,9 +34,9 @@ public class AdminFuncControllerTest {
 	  private UniversityController uc;
 	@Before
 	public void setUp() throws Exception {
-		uc = new U
+		uc = new UniversityController();
 		d = new DBController();
-		ad = new Admin("Casey", "Zins", "czins", "pass", 'Y', 'u');
+		ad = new Admin("Casey", "Zins", "czins", "pass", 'a', 'Y');
 		a = new AdminFuncController();
 		a2 = new AdminFuncController(ad);
 		
@@ -38,7 +44,7 @@ public class AdminFuncControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		d.r
+		univDBlib.university_deleteUniversity("x");
 	}
 
 	@Test
@@ -55,48 +61,51 @@ public class AdminFuncControllerTest {
 
 	@Test
 	public void testGetAccounts() {
-		assertTrue("all accounts retrieved", a.getAccounts() ==d.getAccounts());
+		assertTrue("all accounts retrieved", a2.getAccounts() == d.getAccounts());
 	}
 
 	@Test
 	public void testAddUniversity() {
-		admin.addUniversity("SJU", "MN", "COLLEGEVILLE", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "));
-		Assert.assertTrue("UniversityAdded", d.getUniversity("SJU").getUniversityName()== "SJU");
+		a2.addUniversity("SJU", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
+		assertTrue("UniversityAdded", d.getAUniversity("SJU").getUniversityName()== "SJU");
 	}
 
 	@Test
 	public void testDisplayAccounts() {
-		fail("Not yet implemented");
+		ArrayList<Account> ar = d.getAccounts();
+	    String s = "";
+	    for(Account u: ar){
+	      u.displayStudent();
+	      s = s + u.displayStudent(); 
+	    }
+		assertTrue("accounts displayed", a2.displayAccounts()== s);
 	}
 
 	@Test
 	public void testGetUniversities() {
-		fail("Not yet implemented");
+		assertTrue("universities retrieved", a2.getUniversities()==d.getAllUniversities());
 	}
 
 	@Test
 	public void testDisplayUniversities() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeactivate() {
-		fail("Not yet implemented");
+		ArrayList<University> ab = d.getAllUniversities();
+	    String k = "";
+	    for(University u: ab){
+	      u.printString();
+	      k = k + u;
+	    }
+		assertTrue("universities displayed",a2.displayUniversities()== k);
+		
 	}
 
 	@Test
 	public void testFindAccount() {
-		fail("Not yet implemented");
+		assertTrue("account found",d.findAccount("nAdmin").equals(a2.findAccount("nAdmin")));
 	}
 
 	@Test
 	public void testViewAccount() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEditUniversity() {
-		fail("Not yet implemented");
+		assertTrue("account viewed", d.findAccount("nAdmin").equals(a2.viewAccount("nAdmin")));
 	}
 
 	@Test
@@ -111,12 +120,30 @@ public class AdminFuncControllerTest {
 
 	@Test
 	public void testAddEmphases() {
-		fail("Not yet implemented");
+		int exp = 1;
+		int actual = 0;
+		a2.addEmphases("SJU", "Science");
+		University u = d.getAUniversity("SJU");
+		ArrayList<String> emp = (ArrayList<String>) u.getEmphases();
+		for(String e: emp)
+			if(e.equals("Science")){
+				actual++;
+			}
+		assertEquals("emphases added",exp,actual);
 	}
 
 	@Test
 	public void testRemoveEmphases() {
-		fail("Not yet implemented");
+		int exp = 0;
+		int actual = 0;
+		a2.addEmphases("SJU", "Science");
+		a2.removeEmphases("SJU", "Science");
+		University u = d.getAUniversity("SJU");
+		ArrayList<String> emp = (ArrayList<String>) u.getEmphases();
+		for(String e: emp)
+			if(e.equals("Science")){
+				actual++;
+			}
+		assertEquals("emphases added",exp,actual);
 	}
-
-}
+	}

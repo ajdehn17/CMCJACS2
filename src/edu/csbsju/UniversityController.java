@@ -21,6 +21,7 @@ public class UniversityController {
 	 */
 	private DBController d;
 	
+	private DBLibrary ul;
 	/**
 	 * Default controller, this controller sets the DBController instance
 	 * variable to a new DBController object
