@@ -194,18 +194,22 @@ public class DBController {
 		 int count = 0;
 		 while(!found && count<users.length)
 		 {
-			 if(users[count][2].equals(username.toLowerCase()))
+			 if(users[count][2].equals(username))
 			 {
 				 firstName = users[count][0];
 				 lastName = users[count][1];
 				 password = users[count][3];
 				 type = users[count][4].charAt(0);
 				 status = users[count][5].charAt(0);
+				 found = true;
 			 }
 			 count++;
 		 }
+		 if(!found){
+			 return null;
+		 }
 		 Account acct = new Account(firstName, lastName, username, password, type, status);
-	  return acct;
+		 return acct;
 	 }
 	 
 	 /**
@@ -243,6 +247,10 @@ public class DBController {
 	  */
 	 public boolean editAccount(String u, String fn,String ln,String p,char type, char status)
 	 {
+		 Account a = this.findAccount(u);
+		 if(a == null){
+			 return false;
+		 }
 		 int i = univDBlib.user_editUser(u, fn, ln, p, type, status);
 		 if(i!=-1){
 			 return true;
@@ -255,8 +263,9 @@ public class DBController {
 	  * It gets all the attributes for the new university and then calls the DBController
 	  * to update the database with the new university
 	  * @param u University Object to be added to the database
+	  * @return boolean
 	  */
-	 public void addUniversity(University u)
+	 public boolean addUniversity(University u)
 	 {
 		 String school = u.getUniversityName();
 		 String state = u.getState();
@@ -285,10 +294,19 @@ public class DBController {
 			}
 		}
 		
-
-		 univDBlib.university_addUniversity(school, state, location, control, numberOfStudents,
-				 percentFemale, satVerbal, satMath, expenses, financialAid, numberOfApplicants,
-				 percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
+		University uni = getAUniversity(school);
+		if(uni==null){
+			 int i = univDBlib.university_addUniversity(school, state, location, control, numberOfStudents,
+					 percentFemale, satVerbal, satMath, expenses, financialAid, numberOfApplicants,
+					 percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
+			 if(i!=-1){
+				 return true;
+			 }
+			 return false;
+		}
+		else{
+			return false;
+		}
 	 }
 	 
 	 /**
@@ -405,9 +423,16 @@ public class DBController {
 	  * @param password the password of the new account
 	  * @param type the type of the new account
 	  * @param status the status of the new account
+	  * @return boolean representing a successful addition
 	  */
-	 public void addAccount(String firstName,String lastName, String username, String password, char type, char status){
-		 univDBlib.user_addUser(firstName, lastName, username, password, type);
+	 public boolean addAccount(String firstName,String lastName, String username, String password, char type, char status){
+		 Account a = this.findAccount(username);
+		 if(a == null){
+			 univDBlib.user_addUser(firstName, lastName, username, password, type);
+			 return true;
+		 }
+		 else
+			 return false;
 	 }
 	 
 	 
@@ -432,13 +457,22 @@ public class DBController {
 	    * @param socialScale Social scale of a university
 	    * @param qualityOfLife Quality of life of a university
 	    */
-		public void editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+		public boolean editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
 	            double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
 	            double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
-		
-		univDBlib.university_editUniversity(universityName, state, location, control, numberOfStudents, percentFemale,
-				satVerbal, satMath, expenses, financialAid, numberOfApplicants,
-				 percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
+		University u = getAUniversity(universityName);
+		if(u==null){
+			return false;
+		}
+		else{
+			int i = univDBlib.university_editUniversity(universityName, state, location, control, numberOfStudents, percentFemale,
+					satVerbal, satMath, expenses, financialAid, numberOfApplicants,
+					 percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
+			if(i!=-1){
+				 return true;
+			 }
+			 return false;
+		}
 		
 	 }
 	 
@@ -468,6 +502,12 @@ public class DBController {
 	 public int removeEmphases(String universityName,String emphases ){
 		 return univDBlib.university_removeUniversityEmphasis(universityName, emphases);
 	 }
+	 
+	 /**
+	  * Method only used in testing to remove universities that we added
+	  * so that other test cases would not fail.
+	  * @param u a string of a university of remove.
+	  */
 	public void removeU(String u)
 	{
 		univDBlib.university_deleteUniversity(u);
@@ -492,9 +532,9 @@ public class DBController {
 		 University test = d.getAUniversity("AUGSBURG");
 		 System.out.println(test.printString());
 		 
-		 System.out.println(d.findAccount("JuSer").getStatus());
-		 System.out.println(d.findAccount("JuSer").getFirstName());
-		 System.out.println(d.findAccount("JuSer").getLastName());
+		 System.out.println(d.findAccount("juser").getStatus());
+		 System.out.println(d.findAccount("juser").getFirstName());
+		 System.out.println(d.findAccount("juser").getLastName());
 		 
 		 /**
 		 
@@ -504,6 +544,7 @@ public class DBController {
 			 System.out.println(s);
 		 }
 		 */
+		 univDBlib.user_deleteUser("andrew");
 		 ArrayList<Account> ac = d.getAccounts();
 		 for(Account p: ac){
 			 System.out.println(p.displayStudent());

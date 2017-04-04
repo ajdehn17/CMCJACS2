@@ -664,8 +664,8 @@ public class CMCDriver {
     	    	    	input = JOptionPane.showInputDialog("Are You sure You want to Add This Ephases? (y/n)");
         	    	    cmd = input.charAt(0);
         	    	    if(cmd == 'y'){
-        	    	    	int i = admin.addEmphases(un, emp);
-        	    	    	if(i==-1){
+        	    	    	boolean i = admin.addEmphases(un, emp);
+        	    	    	if(!i){
             	    	    	JOptionPane.showMessageDialog(null,"There was an error adding the Emphases");
         	    	    	}
         	    	    	else{
@@ -679,8 +679,8 @@ public class CMCDriver {
     	    	    	input = JOptionPane.showInputDialog("Are You sure You want to Remove This Ephases? (y/n)");
         	    	    cmd = input.charAt(0);
         	    	    if(cmd == 'y'){
-        	    	    	int i = admin.removeEmphases(un, emp);
-        	    	    	if(i==-1){
+        	    	    	boolean i = admin.removeEmphases(un, emp);
+        	    	    	if(!i){
             	    	    	JOptionPane.showMessageDialog(null,"There was an error removing the Emphases");
         	    	    	}
         	    	    	else{

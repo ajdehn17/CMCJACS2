@@ -65,7 +65,7 @@ public class AdminFuncControllerTest {
 	public void testGetAccounts() {
 		ArrayList<Account> acct = d.getAccounts();
 		int x = acct.size();
-		assertEquals("all accounts retrieved", 7, x);
+		assertEquals("all accounts retrieved", 8, x);
 	}
 
 	@Test
@@ -78,6 +78,12 @@ public class AdminFuncControllerTest {
 		univDBlib.university_deleteUniversity("PPP");
 		assertEquals("UniversityAdded", 1, i++);
 	}
+	
+	@Test (expected = Error.class)
+	public void testAddUniversityFailsForDuplicateSchool() {
+		a2.addUniversity("SJU", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
+	}
+	
 
 	@Test
 	public void testDisplayAccounts() {
@@ -102,7 +108,7 @@ public class AdminFuncControllerTest {
 		ArrayList<University> a = a2.getUniversities();
 	    String k = "";
 	    for(University u: a){
-	    	k = k = u.printString();
+	    	k = k + u.printString();
 	    }
 		assertEquals("universities displayed",a2.displayUniversities(),k);
 	}
@@ -133,14 +139,26 @@ public class AdminFuncControllerTest {
 				assertEquals("editedUniversity", d.getAUniversity("PPP").getNumberOfStudents(), 10);
 				univDBlib.university_deleteUniversity("PPP");
 			}
+	
+	@Test (expected = Error.class)
+	public void testEditUniversityFailsForNoSchool() {
+		a2.editUniversity("967", "MN", "COLLEGEVILLE", " ", 5, 6.0, 10, 13, 6.0, 6.0, 7, 1.0, 9.0, 5, 6, 7);
+	}
+	
 	@Test
 	public void testEditAccount() {
 		boolean k = a2.editAccount("Casey", "Booth", "czins", "pass", 'a', 'Y');
 		Account a = d.findAccount("czins");
+		System.out.println(a.displayStudent());
 		assertEquals("account edited", k, true);
 		assertEquals("account edited",a.getLastName(), "Booth");
 		//a2.editAccount("Casey", "Zins", "czins", "pass", 'a', 'Y');
 		
+	}
+	
+	@Test (expected = Error.class)
+	public void testEditAccountInvalidUsername() {
+		boolean k = a2.editAccount("Casey", "Booth", "jjj", "pass", 'a', 'Y');
 	}
 
 	@Test
@@ -148,9 +166,9 @@ public class AdminFuncControllerTest {
 		a2.addAccount("Carly", "Ciccati", "cmciccati", "p", 'a', 'Y');
 		Account a = d.findAccount("cmciccati");
 		assertEquals("account edited", a.getUsername(), "cmciccati");
-		univDBlib.user_deleteAccount("cmciccati");
-
+		univDBlib.user_deleteUser("cmciccati");
 	}
+	
 
 	@Test
 	public void testAddEmphases() {

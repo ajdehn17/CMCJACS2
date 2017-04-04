@@ -80,18 +80,25 @@ public class AdminFuncController {
    * @param academicScale The academic scale of a university
    * @param socialScale Social scale of a university
    * @param qualityOfLife Quality of life of a university
+   * @boolean a value representing a boolean of a successful addition
+   * @throws an error if the addtition was unsuccessful
    */
-  public void addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+  public boolean addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
                             double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
                             double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
-    uc.addUniversity(universityName, state, location, control, numberOfStudents,
+    boolean b = uc.addUniversity(universityName, state, location, control, numberOfStudents,
                     percentFemale, satVerbal, satMath, expenses, financialAid, numberOfApplicants,
                     percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
+    if(!b){
+ 	   throw new Error("The addtition was unsuccessful");
+    }
+    return b;
   }
   
   /**
    * This is a method used to display the accounts of all of the Account
    * objects that are in the database.
+   * @return a string with all detailed information about all accounts
    */
   public String displayAccounts(){
     ArrayList<Account> a = this.getAccounts();
@@ -115,16 +122,21 @@ public class AdminFuncController {
   /**
    * This is a method used to display the accounts of all of the University
    * objects that are in the database.
+   * @return a string with all detailed information about all universities
    */
   public String displayUniversities(){
     ArrayList<University> a = this.getUniversities();
     String k = "";
     for(University u: a){
-    	k = k = u.printString();
+    	k = k + u.printString();
     }
     return k;
   }
   
+  /**
+   * This returns the current admin object in this class
+   * @return the current admin instance variable object
+   */
   public Admin getAdmin(){
 	  return admin;
   }
@@ -134,6 +146,7 @@ public class AdminFuncController {
    * It uses the account object and changes the status of the Account object to 
    * deactivated.
    * @param a an Account object
+   * @return a char representing the new deactivated account
    */
   public char deactivate(Account a){
     d.deactivate(a);
@@ -186,13 +199,20 @@ public class AdminFuncController {
    * @param academicScale The academic scale of a university
    * @param socialScale Social scale of a university
    * @param qualityOfLife Quality of life of a university
+   * @return a boolean noting if an edit was successful
+   * @throws an error if the edit was unsuccessful
    */
-  public void editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+  public boolean editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
                              double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
                              double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
-   uc.editUniversity( universityName, state, location, control, numberOfStudents,
+   
+	  boolean b = uc.editUniversity( universityName, state, location, control, numberOfStudents,
            percentFemale, satVerbal, satMath, expenses, financialAid, numberOfApplicants,
-           percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);                       
+	           percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);    
+	   if(!b){
+	 	   throw new Error("The edit was unsuccessful");
+	   }
+	   return b;
   }
   
   /**
@@ -205,15 +225,14 @@ public class AdminFuncController {
    * @param password the password of the account
    * @param type the type of the account
    * @param status the status of the account
+   * @return boolean representing a successful edit
+   * @throws an error if the edit was not successful.
    */
   public boolean editAccount(String firstname, String lastname, String username, String password, char type, char status){
     boolean b = d.editAccount(username, firstname, lastname, password, type, status);
     admin.editAccount(username, firstname, lastname, password, type, status);
-    if(b){
-	   System.out.println("Successful Change");
-    }
-    else{
-	   System.out.println("The Change was unsuccessful");
+    if(!b){
+    	throw new Error("The account object could not be edited. Please try again");
     }
     return b;
    }
@@ -228,10 +247,16 @@ public class AdminFuncController {
    * @param password the password of the new account
    * @param type the type of the new account
    * @param status the status of the new account
+   * @return boolean representing a successful edit
+   * @throws an error if the edit was not successful.
    */
-  public void addAccount(String firstname, String lastname, String username, String password, char type, char status){
+  public boolean addAccount(String firstname, String lastname, String username, String password, char type, char status){
      Account a = admin.addAccount(firstname, lastname, username, password, type, status);
-     d.addAccount(a.getFirstName(),a.getLastName(),a.getUsername(),a.getPassword(),a.getType(),a.getStatus());
+     boolean b = d.addAccount(a.getFirstName(),a.getLastName(),a.getUsername(),a.getPassword(),a.getType(),a.getStatus());
+     if(!b){
+     	throw new Error("The account object could not be added. Please try again");
+     }
+     return b;
   }
   
   /**
@@ -239,13 +264,19 @@ public class AdminFuncController {
    * The parameter string is then added to the University's emphases
    * @param universityName a name of a university
    * @param emphases an emphases for a university
-   * @return an integer indicating the number of database records 
-   * inserted or -1 if an invalid school name is specified or if 
-   * the specified emphasis already exists for the specified school
+   * @return a boolean stating if an addition was a success
+   * @throw an error if the emphases could not be added
    * */
-  public int addEmphases(String universityName,String emphases ){
-     return uc.addEmphases(universityName, emphases);
-    
+  public boolean addEmphases(String universityName,String emphases ){
+     int i = uc.addEmphases(universityName, emphases);
+     boolean b = true;
+     if(i==-1){
+    	 b = false;
+     }
+     if(!b){
+    	 throw new Error("The addition of an emphases was unsuccessful");
+     }
+     return b;
   }
   
   /**
@@ -253,12 +284,20 @@ public class AdminFuncController {
    * The parameter string is then removed to the University's emphases
    * @param universityName a name for the specified university
    * @param emphases an emphases for the specified university
-   * @return an integer indicating the number of database records 
-   * inserted or -1 if an invalid school name is specified or if 
-   * the specified emphasis already exists for the specified school
+   * @return a boolean stating if an addition was a success
+   * @throw an error if the emphases could not be removed
    */
-  public int removeEmphases(String universityName,String emphases ){
-    return uc.removeEmphases(universityName, emphases);
+  public boolean removeEmphases(String universityName,String emphases ){
+    int i = uc.removeEmphases(universityName, emphases);
+    boolean b = true;
+    if(i==-1){
+   	 b = false;
+    }
+    if(!b){
+   	 throw new Error("The removal of an emphases was unsuccessful");
+    }
+    return b;
+
   }
   
 }

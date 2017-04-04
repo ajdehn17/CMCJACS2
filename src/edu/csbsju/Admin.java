@@ -87,13 +87,4 @@ public class Admin extends Account{
 	 return a;
  }
  
- /**
-  * TEST MAIN METHOD. This main method has been used to ensure that the 
-  * methods in this call alone work and perform their function correctly 
-  * @param args this is parameter value for the main method
-  */
- public static void main(String args[]){
-	 Admin a = new Admin("Jacob","Upton","Jsupton","114179",'a','Y');
-	 a.displayStudent();
- }
 }

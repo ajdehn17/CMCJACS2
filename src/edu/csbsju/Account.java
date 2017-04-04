@@ -90,6 +90,7 @@ public class Account {
 	 /**
 	  * gets the password for the Account object
 	  * @return the password
+	  * @throws error is the user tries to get a null password
 	  */
 	 public String getPassword() {
 		 if(password == null){
@@ -101,6 +102,7 @@ public class Account {
 	 /**
 	  * gets the type for the Account object
 	  * @return the type
+	  * @throws an error if the user tries to get a null type
 	  */
 	 public char getType() {
 		 if(type == '\0'){
@@ -112,6 +114,7 @@ public class Account {
 	 /**
 	  * gets the status for the Account object
 	  * @return the status
+	  * @throws an error if the user tries to get a null status
 	  */
 	 public char getStatus() {
 		 if(status == '\0'){
@@ -123,6 +126,7 @@ public class Account {
 	 /**
 	  * Gets the firstname of the account
 	  * @return the first name of the account object
+	  * @throws an error if the user tries to get a null firstname
 	  */
 	public String getFirstName() {
 		if(firstName == null){
@@ -142,6 +146,7 @@ public class Account {
 	/**
 	 * gets the lastname of the Account
 	 * @return lastname
+	 * @throws an error if the user tries to get a null last name
 	 */
 	public String getLastName() {
 		if(lastName == null){
@@ -223,6 +228,8 @@ public class Account {
 	 /**void
 	  * This method gets all the details for the Account object
 	  * This method acts like a toString method.
+	  * @throws an error if the username is null meaning there is no account object
+	  * @return a string containing the user's account information
 	  */
 	 public String displayStudent(){
 		 if(this.username == null){
@@ -238,6 +245,7 @@ public class Account {
 	  * logs into the system. Depending on if the user is an admin or student,
 	  * They will be brought to their prospective screen
 	  * @param t char The type (admin or user) of the Account object
+	  * @return a string containing the menu for the student
 	  */
 	 public String displayMenu(char t){
 		 if(t == 'u'){
@@ -254,6 +262,7 @@ public class Account {
 	  * method displays an error message for the user when there is an error
 	  * when logging in. This error is often because the user input a wrong
 	  * username or password
+	  * @return string of the login error
 	  */
 	 public String displayLoginError(){
 		 return "There was an error Loggin in. Please Try again.";

@@ -58,17 +58,19 @@ public class AdminUI extends AccountUI{
   * This method displays all of the aspects of all university objects.
   * It gets all attributes from the university objects and then displays
   * them on the screen for the user.
+  * @return a string value with all detailed university information
   */
- public void displayUniversities(){
-	 adminFunc.displayUniversities();
+ public String displayUniversities(){
+	 return adminFunc.displayUniversities();
  }
   
   /**
    * This is a method used to display the accounts of all of the Account
    * objects that are in the database.
+   * @return a string value with all detailed account information
    */
-  public void displayAccounts(){
-   adminFunc.displayAccounts();
+  public String displayAccounts(){
+	  return adminFunc.displayAccounts();
   }
   
   /**
@@ -101,11 +103,12 @@ public class AdminUI extends AccountUI{
    * @param academicScale The academic scale of a university
    * @param socialScale Social scale of a university
    * @param qualityOfLife Quality of life of a university
+   * @return a boolean representing if an addition was successful
    */
-  public void addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+  public boolean addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
     double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
     double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
-   adminFunc.addUniversity(universityName, state, location, control, numberOfStudents, percentFemale, satVerbal, satMath, expenses, financialAid,  numberOfApplicants,
+   return adminFunc.addUniversity(universityName, state, location, control, numberOfStudents, percentFemale, satVerbal, satMath, expenses, financialAid,  numberOfApplicants,
      percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
   }
   
@@ -197,7 +200,7 @@ public class AdminUI extends AccountUI{
    * inserted or -1 if an invalid school name is specified or if 
    * the specified emphasis already exists for the specified school
    * */
-  public int addEmphases(String universityName,String emphases ){
+  public boolean addEmphases(String universityName,String emphases ){
    return adminFunc.addEmphases(universityName, emphases);
   }
   
@@ -210,7 +213,7 @@ public class AdminUI extends AccountUI{
    * inserted or -1 if an invalid school name is specified or if 
    * the specified emphasis already exists for the specified school
    */
-  public int removeEmphases(String universityName,String emphases ){
+  public boolean removeEmphases(String universityName,String emphases ){
    return adminFunc.removeEmphases(universityName, emphases);
   }
   

@@ -9,19 +9,22 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import dblibrary.project.csci230.UniversityDBLibrary;
+
 public class DBControllerTest {
 
 	private DBController db1, db2, db3;
+	private UniversityDBLibrary univDBlib;
 	  
 	@Before
 	public void setUp() throws Exception {
 		db1 = new DBController();
 		db2 = new DBController();
+		this.univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
 		
 	}
 	@After
 	public void tearDown() throws Exception {
-		db1.removeU("AUGSBURG2");
 	}
 	// Testing constructor 1
 	@Test
@@ -77,7 +80,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetAccounts() {
-		int expResult = 7;
+		int expResult = 8;
 		ArrayList<Account> allAccts = db1.getAccounts();
 		int numAccounts = allAccts.size();
 		
@@ -249,14 +252,13 @@ public class DBControllerTest {
 	@Test
 	public void testAddAccount() {
 		boolean expResult = true;
-		Account a = new Account("Jacob","Upton","JSU","Jsu--2019",'u','Y');
+		Account a = new Account("Jacob","Upton","andrew","Jsu--2019",'u','Y');
 		
-		db1.addAccount(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(),
+		boolean b = db1.addAccount(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(),
 				a.getType(), a.getStatus());
 		
-		assertEquals("Add Account: " + expResult, 
-				expResult, db1.findAccount(a.getUsername())!=null);
-				
+		assertEquals("Add Account: " + expResult, expResult, b);
+		univDBlib.user_deleteUser("andrew");
 	}
 
 	@Test
@@ -339,5 +341,7 @@ public class DBControllerTest {
 		// Add back in emphases
 		db1.addEmphases("AUGSBURG", "EDUCATION");
 	}
+	
+	
 
 }

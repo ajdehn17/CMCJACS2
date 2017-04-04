@@ -48,12 +48,13 @@ public class UniversityController {
 	   * @param academicScale The academic scale of a university
 	   * @param socialScale Social scale of a university
 	   * @param qualityOfLife Quality of life of a university
+	   * @return a boolean noting that if an addition was successful or not
 	   */
-	  public void addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+	  public boolean addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
 	                            double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
 	                            double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
 		  University u = new University(universityName, state, location, control, numberOfStudents, percentFemale, satVerbal, satMath, expenses, financialAid, numberOfApplicants, percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife,null);
-		  d.addUniversity(u);
+		  return d.addUniversity(u);
 	  }
 	
 	/**
@@ -75,15 +76,19 @@ public class UniversityController {
 	   * @param academicScale The academic scale of a university
 	   * @param socialScale Social scale of a university
 	   * @param qualityOfLife Quality of life of a university
+	   * @boolean a boolean noting if an edit was successful or not
 	 */
-	public void editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+	public boolean editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
             double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
             double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
 		University u = d.getAUniversity(universityName);
+		if(u == null){
+			return false;
+		}
 		u.editUniversity( universityName, state, location, control, numberOfStudents,
 	             percentFemale, satVerbal,  satMath, expenses, financialAid, numberOfApplicants,
 	             percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
-		d.editUniversity(universityName, state, location, control, numberOfStudents,
+		return d.editUniversity(universityName, state, location, control, numberOfStudents,
 	             percentFemale, satVerbal,  satMath, expenses, financialAid, numberOfApplicants,
 	             percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
 	}

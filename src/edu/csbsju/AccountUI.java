@@ -59,11 +59,6 @@ public class AccountUI {
 	  */
 	 public Account logOn(String u, String p){
 		 Account a = accountFunc.logOn(u,p);
-		 if(a != null){
-			 JOptionPane.showMessageDialog(null,"Successful Login");
-		 }
-		 else
-			 JOptionPane.showMessageDialog(null,"Unsuccessful Login");
 		 return a;
 	 }
 	 
@@ -81,9 +76,10 @@ public class AccountUI {
 	 /**
 	  * This method does not take any parameters. It logs the current
 	  * Account object out of the system.
+	  * @return an account object
 	  */
-	 public void logout(){
-	    accountFunc.logOff();
+	 public Account logout(){
+	    return accountFunc.logOff();
 	 }
 	 
 	 /**
@@ -104,9 +100,10 @@ public class AccountUI {
 	  * It gets all attributes from the university object and then displays
 	  * those on the screen for the user.
 	  * @param name University object
+	  * @return a string representing detailed school info
 	  */
-	 public void displayUniversity(String name){
-		 accountFunc.displayUniversity(name);
+	 public String displayUniversity(String name){
+		 return accountFunc.displayUniversity(name);
 	 }
 	 
 	 /**
@@ -114,6 +111,7 @@ public class AccountUI {
 	  * continue on making the changes to this Account object, whether it is
 	  * a User changing their own account information or an Admin changing
 	  * another person's Account information.
+	  * @param answer, a string value of a confirmation
 	  * @return a boolean. True if the user confirms the edit they are about 
 	  * to perform
 	  */

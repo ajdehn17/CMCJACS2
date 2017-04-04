@@ -63,8 +63,11 @@ public class AccountController {
 	  * and uses them to log the Account object into the system
 	  * @param u String, a username for the Account object
 	  * @param p String, a password for the Account object
-	  * @return an account object for the account being logged in. This is
-	  * null if there is no account found.
+	  * @return an account object for the account being logged in. 
+	  * @throws an error if the account is not active
+	  * @throws an error if the username is not found in the system
+	  * @throws an error if the password does not match the correct password
+	  * @throws an error if the account is not found in the system
 	  */
 	 public Account logOn(String u, String p){
 		 Account acct = null;
@@ -84,8 +87,7 @@ public class AccountController {
 							 throw new Error("The account provided is not Active");
 					 }
 				 }
-				 this.a = null;
-				 return a;
+				 throw new Error("The account doesn't exist");
 			 }
 			 else{
 				 throw new Error("The Password does not match the username provided");
@@ -99,6 +101,7 @@ public class AccountController {
 	 /**
 	  * This method does not take any parameters. It logs the current
 	  * Account object out of the system.
+	  * @return an account object that is now logged off
 	  */
 	 public Account logOff(){
 		 a.logOff();
@@ -112,6 +115,7 @@ public class AccountController {
 	  * the specified information
 	  * @param name String, a name of a university
 	  * @return University a university object
+	  * @throws an error if the university found = null, which means it doesn't exist
 	  */
 	 public University getAUniversity(String name){
 		 University u = d.getAUniversity(name);
@@ -126,6 +130,7 @@ public class AccountController {
 	  * It gets all attributes from the university object and then displays
 	  * those on the screen for the user.
 	  * @param name University object
+	  * @return a string of a displayed university
 	  */
 	 public String displayUniversity(String name){
 		 University u = this.getAUniversity(name);
@@ -137,7 +142,9 @@ public class AccountController {
 	  * continue on making the changes to this Account object, whether it is
 	  * a User changing their own account information or an Admin changing
 	  * another person's Account information.
+	  * @param answer, a string value representing a confirmation 
 	  * @return boolean, if it is confirmed it is true
+	  * @throws an error if the user neither agrees or declines
 	  */
 	 public boolean confirmEdit(String answer){
 		 if(answer == "y"|| answer == "Y"){
@@ -182,19 +189,5 @@ public class AccountController {
 		 return a;
 	 }
 	 
-	 /**
-	  * MAIN METHOD, this is used to test the function of the methods
-	  * in this individual class ALONE
-	  * @param args parameter for the main method
-	  */
-	 public static void main(String args[]){
-		 Account a = new Account("Jacob","Upton","Jsupton","02101997",'U','Y');
-		 AccountController ac = new AccountController(a);
-		 a.displayStudent();
-		 if(ac.isActive())
-			 System.out.println("Active?: TRUE");
-		 else
-			 System.out.println("Active?: FALSE");
-	 }
 
 }
