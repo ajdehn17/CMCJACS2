@@ -32,7 +32,7 @@ public class DBControllerTest {
 		db1 = new DBController();
 		boolean expResult = true;
 		assertEquals("Database loaded successfully: " + expResult, 
-				expResult, db1.checkUsername("JuSer"));
+				expResult, db1.checkUsername("juser"));
 	}
 	// Testing constructor 2
 	@Test
@@ -40,14 +40,14 @@ public class DBControllerTest {
 		db1 = new DBController("jacs","jacs","csci230");
 		boolean expResult = true;
 		assertEquals("Database loaded successfully: " + expResult, 
-				expResult, db1.checkUsername("JuSer"));
+				expResult, db1.checkUsername("juser"));
 	}
 
 	@Test
 	public void testCheckUsername() {
 		boolean expResult = true;
 		assertEquals("Exists in the database: " + expResult, 
-				expResult, db1.checkUsername("JuSer"));
+				expResult, db1.checkUsername("juser"));
 		
 		boolean expResult2 = false;
 		assertEquals("Exists in the database: " + expResult2, 
@@ -64,7 +64,7 @@ public class DBControllerTest {
 	public void testFindPassword() {
 		String expResult = "user";
 		assertEquals("Exists in the database: " + expResult, 
-				expResult, db1.findPassword("JuSer"));
+				expResult, db1.findPassword("juser"));
 		
 		
 	}

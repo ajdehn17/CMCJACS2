@@ -56,6 +56,7 @@ public class UserUI extends AccountUI{
 	 * calls the logon function in the Account class
 	 * @param u string representing username
 	 * @param p string representing password
+	 * @return an account object
 	 */
 	public Account logOn(String u, String p)
 	{
@@ -66,6 +67,7 @@ public class UserUI extends AccountUI{
 	/**
 	 * display student details
 	 * @return a user object to display
+	 * @return a user object
 	 */
 	public User displayStudentDetails()
 	{
@@ -125,7 +127,7 @@ public class UserUI extends AccountUI{
 	
 	/**
 	 * gets the saved schools
-	 * @return List<University> a list of the student's saved schools
+	 * @return List<String> a list of the student's saved schools
 	 */
 	public List<String> getSavedSchools()
 	{

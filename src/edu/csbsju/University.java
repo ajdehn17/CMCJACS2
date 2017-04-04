@@ -198,6 +198,7 @@ public class University {
 	/**
 	 * sets the location of the university
 	 * @param location the location to set
+	 * @throws illegalArgument Exception
 	 */
 	public void setLocation(String location) {
 		if(location.equalsIgnoreCase("URBAN") || location.equalsIgnoreCase("SUBURBAN") ||
@@ -239,6 +240,7 @@ public class University {
 	/**
 	 * sets the control of the university
 	 * @param control the control to set
+	 * @throws illegalArgument Exception
 	 */
 	public void setControl(String control) {
 		if(control.equalsIgnoreCase("PRIVATE") || control.equalsIgnoreCase("STATE") ||
@@ -517,6 +519,7 @@ public class University {
 	/**
 	 * This is like a toString method. It prints out all of the 
 	 * attributes for a given University.
+	 * @return string of the detailed university information
 	 */
 	public String printString() {
 		return ( "Name: \t\t\t" + universityName + "\nLocation: \t\t" + location + "\nState: \t\t\t" + state

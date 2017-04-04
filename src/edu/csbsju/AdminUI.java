@@ -117,9 +117,10 @@ public class AdminUI extends AccountUI{
    * It uses the account object and changes the status of the Account object to 
    * deactivated.
    * @param a Account object
+   * @return char representing the deactived status
    */
-  public void deactivate(Account a){
-   adminFunc.deactivate(a);
+  public char deactivate(Account a){
+   return adminFunc.deactivate(a);
   }
   
   /**
@@ -152,11 +153,12 @@ public class AdminUI extends AccountUI{
    * @param academicScale The academic scale of a university
    * @param socialScale Social scale of a university
    * @param qualityOfLife Quality of life of a university
+   * @return a boolean depending on if the edit was successful or not
    */
-  public void editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
+  public boolean editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
    double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
    double percentAdmitted, double percentEnrolled, int academicScale, int socialScale, int qualityOfLife){
-   adminFunc.editUniversity(universityName, state, location, control, numberOfStudents,
+   return adminFunc.editUniversity(universityName, state, location, control, numberOfStudents,
    percentFemale, satVerbal, satMath, expenses, financialAid, numberOfApplicants,
    percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife);
   }
@@ -171,9 +173,10 @@ public class AdminUI extends AccountUI{
    * @param password the password of the account
    * @param type the type of the account
    * @param status the status of the account
+   * @return a boolean depending on if the edit was successful or not
    */
-  public void editAccount(String firstname, String lastname, String username, String password, char type, char status){
-   adminFunc.editAccount(firstname, lastname, username, password, type, status);
+  public boolean editAccount(String firstname, String lastname, String username, String password, char type, char status){
+   return adminFunc.editAccount(firstname, lastname, username, password, type, status);
   }
   
   /**
@@ -186,9 +189,10 @@ public class AdminUI extends AccountUI{
    * @param password the password of the new account
    * @param type the type of the new account
    * @param status the status of the new account
+   * @return a boolean depending on if the addition was successful or not
    */
-  public void addAccount(String firstname,String lastname, String username, String password, char type, char status){
-   adminFunc.addAccount(firstname, lastname, username, password, type, status);
+  public boolean addAccount(String firstname,String lastname, String username, String password, char type, char status){
+   return adminFunc.addAccount(firstname, lastname, username, password, type, status);
   }
   
   /**
@@ -196,9 +200,7 @@ public class AdminUI extends AccountUI{
    * The parameter string is then added to the University's emphases
    * @param universityName a name of a university 
    * @param emphases the desired emphases to add to the university
-   * @return an integer indicating the number of database records 
-   * inserted or -1 if an invalid school name is specified or if 
-   * the specified emphasis already exists for the specified school
+   * @return a boolean depending on if the addition was successful or not
    * */
   public boolean addEmphases(String universityName,String emphases ){
    return adminFunc.addEmphases(universityName, emphases);
@@ -209,9 +211,7 @@ public class AdminUI extends AccountUI{
    * The parameter string is then removed to the University's emphases
    * @param universityName a name of a university
    * @param emphases the desired emphases to remove from the university
-   * @return an integer indicating the number of database records 
-   * inserted or -1 if an invalid school name is specified or if 
-   * the specified emphasis already exists for the specified school
+   * @return a boolean depending on if the removal was successful or not
    */
   public boolean removeEmphases(String universityName,String emphases ){
    return adminFunc.removeEmphases(universityName, emphases);

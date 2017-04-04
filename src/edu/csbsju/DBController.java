@@ -58,7 +58,7 @@ public class DBController {
 		 int count = 0;
 		 while (!(found) && count<users.length)
 		 {
-			 if(users[count][2].equalsIgnoreCase(u))
+			 if(users[count][2].equals(u))
 			 {
 				 return true;
 			 }
@@ -82,7 +82,7 @@ public class DBController {
 		 int count = 0;
 		 while(!found && count<users.length)
 		 {
-			 if(users[count][2].equalsIgnoreCase(u))
+			 if(users[count][2].equals(u))
 			 {
 				 return users[count][3];
 			 }
@@ -263,7 +263,7 @@ public class DBController {
 	  * It gets all the attributes for the new university and then calls the DBController
 	  * to update the database with the new university
 	  * @param u University Object to be added to the database
-	  * @return boolean
+	  * @return boolean true if the addition was successful
 	  */
 	 public boolean addUniversity(University u)
 	 {
@@ -374,6 +374,7 @@ public class DBController {
 	  * continue on making the changes to this Account object, whether it is
 	  * a User changing their own account information or an Admin changing
 	  * another person's Account information.
+	  * @param answer, the answer to the confirmation
 	  * @return boolean, a boolean indicating whether or not the user confirms
 	  * that they want to edit
 	  */
@@ -407,7 +408,6 @@ public class DBController {
 	  */
 	 public void deactivate(Account a)
 	 {
-		 a.displayStudent();
 		 univDBlib.user_editUser(a.getUsername(), a.getFirstName(), a.getLastName(),
 				 a.getPassword(), a.getType(), 'N');
 
@@ -456,6 +456,7 @@ public class DBController {
 	    * @param academicScale The academic scale of a university
 	    * @param socialScale Social scale of a university
 	    * @param qualityOfLife Quality of life of a university
+	    * @return boolean representing a successful edit
 	    */
 		public boolean editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
 	            double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
@@ -481,10 +482,8 @@ public class DBController {
 	  * The parameter string is then added to the University's emphases
 	  * @param universityName the name of a university
 	  * @param emphases the emphases desired to add to the university
-	  * @return an integer indicating the number of database records 
-	  * inserted or -1 if an invalid school name is specified or if 
-	  * the specified emphasis already exists for the specified school
-	  * */
+	  * @return int representing a successful addition
+	  */
 	 public int addEmphases(String universityName,String emphases ){
 		 int numRecords = univDBlib.university_addUniversityEmphasis(universityName, emphases);
 		 return numRecords;
@@ -495,9 +494,7 @@ public class DBController {
 	  * The parameter string is then removed to the University's emphases
 	  * @param universityName the name of a university
 	  * @param emphases desired emphases to remove from a university
-	  * @return an integer indicating the number of database records 
-	  * inserted or -1 if an invalid school name is specified or if 
-	  * the specified emphasis already exists for the specified school
+	  * @return int representing a successful removal
 	  */
 	 public int removeEmphases(String universityName,String emphases ){
 		 return univDBlib.university_removeUniversityEmphasis(universityName, emphases);

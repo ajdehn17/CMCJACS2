@@ -149,7 +149,6 @@ public class AdminFuncControllerTest {
 	public void testEditAccount() {
 		boolean k = a2.editAccount("Casey", "Booth", "czins", "pass", 'a', 'Y');
 		Account a = d.findAccount("czins");
-		System.out.println(a.displayStudent());
 		assertEquals("account edited", k, true);
 		assertEquals("account edited",a.getLastName(), "Booth");
 		//a2.editAccount("Casey", "Zins", "czins", "pass", 'a', 'Y');

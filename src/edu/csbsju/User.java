@@ -37,6 +37,7 @@ public class User extends Account {
 
 	/**
 	 * displays details of student
+	 * @return string detialed student information
 	 */
 	public String displayStudent()
 	{
@@ -46,22 +47,21 @@ public class User extends Account {
 	/**
 	 * displays error if displays fails. If there is an error in getting the saved
 	 * Schools of a User, then this error is displayed
+	 * @return display saved schools error
 	 */
 	public String displaySavedSchoolsError()
 	{
-		System.out.println("There are no saved Schools in your Saved Schools List.");
 		return "There are no saved Schools in your Saved Schools List.";
 	}
 	
 	/**
 	 * displays search error. If there is an error in searching, then this error
 	 * is displayed to the user.
+	 * @return display search error
 	 */
 	public String displaySearchError()
 	{
-		System.out.println("No schools were found. Please try again.");
 		return "No schools were found. Please try again.";
-		
 	}
 	
 	/**

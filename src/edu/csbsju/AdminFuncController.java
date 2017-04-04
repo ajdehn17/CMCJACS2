@@ -81,7 +81,7 @@ public class AdminFuncController {
    * @param socialScale Social scale of a university
    * @param qualityOfLife Quality of life of a university
    * @boolean a value representing a boolean of a successful addition
-   * @throws an error if the addtition was unsuccessful
+   * @throws an error if the addition was unsuccessful
    */
   public boolean addUniversity(String universityName, String state, String location, String control, int numberOfStudents,
                             double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
@@ -265,7 +265,7 @@ public class AdminFuncController {
    * @param universityName a name of a university
    * @param emphases an emphases for a university
    * @return a boolean stating if an addition was a success
-   * @throw an error if the emphases could not be added
+   * @throws an error if the emphases could not be added
    * */
   public boolean addEmphases(String universityName,String emphases ){
      int i = uc.addEmphases(universityName, emphases);

@@ -133,6 +133,7 @@ public class UserFuncController {
 	/**
 	 * view/displays a user profile
 	 * @return a user object
+	 * @Throws error if the user is null
 	 */
 	public User displayStudentDetails()
 	{

@@ -124,6 +124,7 @@ public class UniversityController {
 	/**
 	 * Shows details of a university
 	 * @param u University object requested
+	 * @return string of the university
 	 */
 	public String displayUniversity(University u)
 	{
