@@ -522,24 +522,24 @@ public class DBController {
 	  * @param args the parameter for the main method
 	  */
 	 public static void main(String args[]){
-		 DBController d = new DBController();
-		 Account a = d.findAccount("juser");
-		 System.out.println(a.displayStudent());
-		 UniversityDBLibrary univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
-		 d.removeEmphases("x", "Sports");
-		 d.removeEmphases("x", "Academics");
-		 univDBlib.university_deleteUniversity("x");
-		 univDBlib.university_deleteUniversity("AUGSBURG2");
-		 d.removeEmphases("AUGSBURG","MIS");
+		// DBController d = new DBController();
+		// Account a = d.findAccount("juser");
+		// System.out.println(a.displayStudent());
+		// UniversityDBLibrary univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
+		// d.removeEmphases("x", "Sports");
+		// d.removeEmphases("x", "Academics");
+		// univDBlib.university_deleteUniversity("x");
+		// univDBlib.university_deleteUniversity("AUGSBURG2");
+		// d.removeEmphases("AUGSBURG","MIS");
 		 
-		 ArrayList<University> allAccounts = d.getAllUniversities();
-		 System.out.println("Size: " + allAccounts.size());
-		 University test = d.getAUniversity("AUGSBURG");
-		 System.out.println(test.printString());
+		// ArrayList<University> allAccounts = d.getAllUniversities();
+		// System.out.println("Size: " + allAccounts.size());
+		// University test = d.getAUniversity("AUGSBURG");
+		// System.out.println(test.printString());
 		 
-		 System.out.println(d.findAccount("juser").getStatus());
-		 System.out.println(d.findAccount("juser").getFirstName());
-		 System.out.println(d.findAccount("juser").getLastName());
+		// System.out.println(d.findAccount("juser").getStatus());
+		// System.out.println(d.findAccount("juser").getFirstName());
+		// System.out.println(d.findAccount("juser").getLastName());
 		 
 		 /**
 		 
@@ -549,11 +549,19 @@ public class DBController {
 			 System.out.println(s);
 		 }
 		 */
+<<<<<<< HEAD
 		 univDBlib.user_deleteUser("irahal");
 		 ArrayList<Account> ac = d.getAccounts();
 		 for(Account p: ac){
 			 System.out.println(p.displayStudent());
 		 }
+=======
+		 //univDBlib.user_deleteUser("andrew");
+		 //ArrayList<Account> ac = d.getAccounts();
+		 //for(Account p: ac){
+		//	 System.out.println(p.displayStudent());
+		 //}
+>>>>>>> branch 'master' of https://github.com/ajdehn17/CMCJACS2
 		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();

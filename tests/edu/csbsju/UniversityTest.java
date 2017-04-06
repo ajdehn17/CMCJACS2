@@ -142,7 +142,7 @@ public class UniversityTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testSetControlInvalid()
 	{
-		b.setLocation("Public");
+		b.setControl("Public");
 	}
 
 	@Test
@@ -494,6 +494,16 @@ public class UniversityTest {
 		int expResult = 3;
 		assertEquals("Quality of Life: " + expResult, 
 				expResult, a.getQualityOfLife());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetQualityOfLifeNegative() {
+		a.setQualityOfLife(-1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetQualityOfLifeTooLarge() {
+		a.setQualityOfLife(6);
 	}
 
 	@Test
