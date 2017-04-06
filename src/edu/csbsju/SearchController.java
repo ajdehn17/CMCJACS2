@@ -507,19 +507,4 @@ public class SearchController {
 		 return matches;
 	 }
 	 
-	 /**
-	  * A Main method that allows us to test if all of the methods in this class
-	  * are performing correctly by themselves. 
-	  * @param args the parameter value for the main method
-	  */
-	 public static void main(String args[]){
-		 SearchController sc = new SearchController();
-		 DBController d = new DBController();
-		 d.addUniversity(new University("COLLEGE OF SAINT BENEDICT"));
-			List<University> list = sc.search(null,null,null,null,0,10000,0,50,0,400,0,400,0,15000,0,50,0,1000,0,100,0,100,0,5,0,5,0,5,null);
-			for(University u:list){
-				System.out.println(u.getUniversityName());
-			}
-	 }
-	 
 }
