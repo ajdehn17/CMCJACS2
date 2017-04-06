@@ -5,6 +5,8 @@ package edu.csbsju;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,11 +19,30 @@ import org.junit.Test;
  */
 public class UseCaseTests {
 
+	private static Admin activeAdmin;
+	private static DBController dbc;
+	private static User activeUser;
+	private static UserFuncController userFuncCon;
+	private static University u;
+	private static UniversityController univFuncCon;
+	private static AdminFuncController adminFuncCon;
+	
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		activeAdmin = new Admin("Samantha","Schmidgall","SAS", "sas21",'a', 'Y');
+		dbc = new DBController();
+		activeUser = new User("AJ","Dehn","AJD","ajd22",'u','Y');
+		
+		ArrayList<String> aList = new ArrayList<String>();
+		aList.add("SCHOOL");
+		aList.add("ENGINEERING");
+		u = new University("HARVARD", "MA", "URBAN", "PRIVATE", 1010,
+				54.1, 600, 550, 56000, 40123, 38000, 38.1, 72.4, 5, 4, 3,
+				aList);
 	}
 
 	/**
@@ -152,14 +173,42 @@ public class UseCaseTests {
 	
 	@Test
 	public void UseCase14AddUser() {
+		// 1.The Administrator has selected to Add New User
+		// 2.The Admin enters user details into the specified text areas
+		// a.The Admin enters in the user’s name, last name, username, and
+		// password.
+		// b.The user’s status is set to “Y” for active.
+		adminFuncCon = new AdminFuncController(activeAdmin);
+		adminFuncCon.addAccount("Imad", "Rahal", "irahal" , "aPlusWork", 'u', 'Y');
 		
+
+
+		// 3.Admin can select to add the new user to the Database. -- Admin clicks!
+
+		// 4.The system sends the Database the new user information.
+		boolean expResult = true;
+		assertEquals("User added successfully: " + expResult, 
+				expResult, dbc.checkUsername("irahal"));
+
+
+		// 5.The Database searches its memory of users, ensuring that the
+		// username entered is unique.
+		
+
+		// 6.The Database updates its memory of users, adding the new user.
+
+		// 7.The Database confirms its successful addition with the system.
+		
+		// Clean up new user
+		dbc.removeA("irahal");
 	}
-	
+
 	@Test
 	public void UseCase14AddUserDuplicateUsername() {
 		
+
 	}
-	
+
 	@Test
 	public void UseCase15EditUser() {
 		

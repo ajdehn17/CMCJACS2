@@ -423,16 +423,19 @@ public class DBController {
 	  * @param password the password of the new account
 	  * @param type the type of the new account
 	  * @param status the status of the new account
-	  * @return boolean representing a successful addition
+	  * @return boolean representing a successful addition returns false
 	  */
-	 public boolean addAccount(String firstName,String lastName, String username, String password, char type, char status){
+	 public boolean addAccount(String firstName,String lastName, String username, String password, char type, char status)
+	 {
 		 Account a = this.findAccount(username);
 		 if(a == null){
 			 univDBlib.user_addUser(firstName, lastName, username, password, type);
 			 return true;
+		 } else
+		 {
+				return false;
 		 }
-		 else
-			 return false;
+
 	 }
 	 
 	 
@@ -509,6 +512,11 @@ public class DBController {
 	{
 		univDBlib.university_deleteUniversity(u);
 	}
+	
+	public void removeA(String userName)
+	{
+		univDBlib.user_deleteUser(userName);
+	}
 	 /**
 	  * This is the MAIN METHOD
 	  * @param args the parameter for the main method
@@ -541,7 +549,7 @@ public class DBController {
 			 System.out.println(s);
 		 }
 		 */
-		 univDBlib.user_deleteUser("andrew");
+		 univDBlib.user_deleteUser("irahal");
 		 ArrayList<Account> ac = d.getAccounts();
 		 for(Account p: ac){
 			 System.out.println(p.displayStudent());
