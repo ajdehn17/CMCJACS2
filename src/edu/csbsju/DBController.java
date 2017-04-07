@@ -549,20 +549,16 @@ public class DBController {
 			 System.out.println(s);
 		 }
 		 */
-<<<<<<< HEAD
-		 univDBlib.user_deleteUser("irahal");
-		 ArrayList<Account> ac = d.getAccounts();
-		 for(Account p: ac){
-			 System.out.println(p.displayStudent());
-		 }
-=======
+		 //univDBlib.user_deleteUser("irahal");
+		 //ArrayList<Account> ac = d.getAccounts();
+		 //for(Account p: ac){
+		//	 System.out.println(p.displayStudent());
+		// }
 		 //univDBlib.user_deleteUser("andrew");
 		 //ArrayList<Account> ac = d.getAccounts();
 		 //for(Account p: ac){
 		//	 System.out.println(p.displayStudent());
 		 //}
->>>>>>> branch 'master' of https://github.com/ajdehn17/CMCJACS2
-		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();
 		 //ArrayList<Account> c = d.getAccounts();
