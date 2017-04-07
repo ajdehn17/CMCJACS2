@@ -151,6 +151,17 @@ public class UniversityTest {
 		String expResult = "STATE";
 		assertEquals("Control: " + expResult, 
 				expResult, b.getControl());
+		b.setControl("private");
+		
+		String expResult2 = "PRIVATE";
+		assertEquals("Control: " + expResult2, 
+				expResult2, b.getControl());
+		
+		b.setControl("City");
+		String expResult3 = "CITY";
+		assertEquals("Control: " + expResult3, 
+				expResult3, b.getControl());
+		
 	}
 
 	@Test
