@@ -19,6 +19,7 @@ public class AccountTest {
 	public void setUp() throws Exception {
 		a = new Account("Jacob","Upton","JSU","Jsu--2019",'u','Y');
 		b = new Account("Jesse","Upton","JWU","jesse",'a','N');
+		c = new Account("James");
 	}
 
 	/**
@@ -81,6 +82,11 @@ public class AccountTest {
 		assertEquals("Password is " + expResult,expResult, result);
 	}
 
+	@Test (expected = Error.class)
+	public void testGetPasswordInvalid() {
+		c.getPassword();
+	}
+	
 	/**
 	 * Test method for {@link edu.csbsju.Account#getType()}.
 	 */
@@ -91,6 +97,19 @@ public class AccountTest {
 		assertEquals("Type is " + expResult,expResult, result);
 	}
 
+	@Test (expected = Error.class)
+	public void testGetTypeInvalid() {
+		c.getType();
+	}
+	
+	@Test
+	public void testSetType() {
+		char expResult = 'a';
+		a.setType('a');
+		char result = a.getType();
+		assertEquals("Type is " + expResult,expResult, result);
+	} 
+	
 	/**
 	 * Test method for {@link edu.csbsju.Account#getStatus()}.
 	 */
@@ -101,6 +120,19 @@ public class AccountTest {
 		assertEquals("Status is " + expResult,expResult, result);
 	}
 
+	@Test (expected = Error.class)
+	public void testGetStatusInvalid() {
+		c.getStatus();
+	}
+	
+	@Test
+	public void testSetStatus() {
+		char expResult = 'N';
+		a.setStatus('N');
+		char result = a.getStatus();
+		assertEquals("status is " + expResult,expResult, result);
+	} 
+	
 	/**
 	 * Test method for {@link edu.csbsju.Account#getFirstName()}.
 	 */
@@ -109,6 +141,11 @@ public class AccountTest {
 		String expResult = "Jacob";
 		String result = a.getFirstName();
 		assertEquals("First Name is " + expResult,expResult, result);
+	}
+	
+	@Test (expected = Error.class)
+	public void testGetFirstNameInvalid() {
+		c.getFirstName();
 	}
 
 	/**
@@ -130,6 +167,11 @@ public class AccountTest {
 		String expResult = "Upton";
 		String result = a.getLastName();
 		assertEquals("Last Name is " + expResult,expResult, result);
+	}
+	
+	@Test (expected = Error.class)
+	public void testGetLastNameInvalid() {
+		c.getLastName();
 	}
 
 	/**

@@ -123,7 +123,7 @@ public class UserFuncController {
 			 	numberOfApplicantsLOWER,numberOfApplicantsUPPER, percentAdmittedLOWER, percentAdmittedUPPER, 
 			 	percentEnrolledLOWER, percentEnrolledUPPER, academicScaleLOWER, academicScaleUPPER, socialScaleLOWER, 
 			 	socialScaleUPPER, qualityOfLifeLOWER, qualityOfLifeUPPER,emphases);
-		if(x.size()<1){
+		if(x.isEmpty()){
 			u.displaySearchError();
 		}
 		return x;
@@ -163,7 +163,7 @@ public class UserFuncController {
 	 */
 	public List<String> getSavedSchools(){
 		List<String> x = d.getUserSavedSchools(u.getUsername());
-		if(x.size()<1){
+		if(x.isEmpty()){
 			u.displaySavedSchoolsError();
 		}
 		return x;

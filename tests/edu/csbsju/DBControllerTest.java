@@ -248,9 +248,24 @@ public class DBControllerTest {
 		assertEquals("Deactivate: " + expResult, 
 				expResult, a.getStatus());
 	}
+	
+	
+	@Test(expected = Exception.class)
+	public void testAddAccountExisting() throws Exception
+	{	
+		Account a = new Account("Jacob","Upton","juser","Jsu--2019",'u','Y');
+		db1.addAccount(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(),
+				a.getType(), a.getStatus());
+		
 
+		boolean expResult = false;
+		boolean b = db1.addAccount(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(),
+				a.getType(), a.getStatus());
+		assertEquals("Add Account: " + expResult, expResult, b);
+	}
+	
 	@Test
-	public void testAddAccount() {
+	public void testAddAccount() throws Exception {
 		boolean expResult = true;
 		Account a = new Account("Jacob","Upton","andrew","Jsu--2019",'u','Y');
 		

@@ -67,7 +67,7 @@ public class UserFuncControllerTest {
 		ArrayList<String> emphases = new ArrayList<String>();
 		emphases.add("ENGINEERING");
 		ArrayList<University> l = (ArrayList<University>) ufc.searchForSchools("UNIVERSITY OF MINNESOTA","MINNESOTA","URBAN","STATE",40000,60000,40,50,400,500,500,600,13000,15000,40,60,8000,10000,80,90,55,65,3,5,3,5,3,5,emphases);
-		assertEquals("list of schools is"+m.size(),m.size(),0);
+		assertEquals("list of schools is"+l.size(),l.size(),1);
 		
 	}
 
@@ -90,10 +90,10 @@ public class UserFuncControllerTest {
 		assertEquals("new lastname is "+u.getLastName(),u.getLastName(),"Bleh");
 		ufc.editStudentProfile("Jacob","Upton","Jsu--2019");
 		ufc.editStudentProfile("Jacob","Upton","Bleh");
-		assertEquals("new lastname is "+u.getPassword(),u.getPassword(),"Bleh");
+		assertEquals("new password is "+u.getPassword(),u.getPassword(),"Bleh");
 		ufc.editStudentProfile("Jacob","Upton","Jsu--2019");
 		ufc.editStudentProfile("Bleh","Upton","Jsu--2019");
-		assertEquals("new lastname is "+u.getFirstName(),u.getFirstName(),"Bleh");
+		assertEquals("new firstName is "+u.getFirstName(),u.getFirstName(),"Bleh");
 		ufc.editStudentProfile("Jacob","Upton","Jsu--2019");	
 		
 	}

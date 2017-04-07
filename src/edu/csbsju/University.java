@@ -243,8 +243,7 @@ public class University {
 	 * @throws illegalArgument Exception
 	 */
 	public void setControl(String control) {
-		if(control.equalsIgnoreCase("PRIVATE") || control.equalsIgnoreCase("STATE") ||
-				control.equalsIgnoreCase("CITY") || control.equalsIgnoreCase("-1"))
+		if(control.equalsIgnoreCase("PRIVATE") || control.equalsIgnoreCase("STATE") ||control.equalsIgnoreCase("CITY") || control.equalsIgnoreCase("-1"))
 		{
 			this.control = control.toUpperCase();
 		}
@@ -653,21 +652,4 @@ public class University {
 	                    percentAdmitted, percentEnrolled, academicScale, socialScale, qualityOfLife, null);
 	   return u;
 	  }
-
-	/**
-	 * Main METHOD, used in order to test to make sure that all methods
-	 * within this class alone perform their function correctly.
-	 * @param args the parameter value for the main method 
-	 */
-	public static void main(String args[]){
-		ArrayList<String> l = new ArrayList<String>();
-		l.add("Beer");
-		l.add("Popcorn");
-		University u = new University("St. John's University","Minnesota","RURAL","MATH",2112,0,1300,1350,52433.0,25000.0,1000,68.0,98.0,5,5,5,l);
-		u.printString();
-		
-	}
-	
-	
-
 }
