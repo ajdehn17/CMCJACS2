@@ -23,7 +23,7 @@ public class DBController {
 	 * This instance is a variable that helps us access the UniversityDBLibrary 
 	 * jar that is connected to the project
 	 */
-	private UniversityDBLibrary univDBlib;
+	private static UniversityDBLibrary univDBlib;
 	
 	/**
 	 * Default Constructor, It creates a new UniversityDBLibrary object
@@ -181,7 +181,7 @@ public class DBController {
 	  * @param username User name to be searched in the database.
 	  * @return Account object related to provided user name.
 	  */
-	 public Account findAccount(String username) throws Exception
+	 public Account findAccount(String username)
 	 {
 		 String firstName = null;
 		 String lastName = null;
@@ -522,7 +522,7 @@ public class DBController {
 	  * @param args the parameter for the main method
 	  */
 	 public static void main(String args[]){
-		// DBController d = new DBController();
+		DBController d = new DBController();
 		// Account a = d.findAccount("juser");
 		// System.out.println(a.displayStudent());
 		// UniversityDBLibrary univDBlib = new UniversityDBLibrary("jacs","jacs","csci230");
@@ -549,19 +549,14 @@ public class DBController {
 			 System.out.println(s);
 		 }
 		 */
-<<<<<<< HEAD
+
 		 univDBlib.user_deleteUser("irahal");
 		 ArrayList<Account> ac = d.getAccounts();
 		 for(Account p: ac){
 			 System.out.println(p.displayStudent());
 		 }
-=======
-		 //univDBlib.user_deleteUser("andrew");
-		 //ArrayList<Account> ac = d.getAccounts();
-		 //for(Account p: ac){
-		//	 System.out.println(p.displayStudent());
-		 //}
->>>>>>> branch 'master' of https://github.com/ajdehn17/CMCJACS2
+
+
 		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();
