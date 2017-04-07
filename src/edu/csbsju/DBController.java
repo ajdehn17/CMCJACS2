@@ -560,10 +560,10 @@ public class DBController {
 		 
 		// d.addAccount(a.getFirstName(), a.getLastName(), a.getUserName(), .password, type, status);
 		// ArrayList<University> p = d.getAllUniversities();
-		 //ArrayList<Account> c = d.getAccounts();
-		 //for(Account x: c){
-		//	 x.displayStudent();
-		// }
+		 ArrayList<Account> c = d.getAccounts();
+		 for(Account x: c){
+			 System.out.println(x.displayStudent());
+		 }
 		 //for(University u: p){
 		//	 u.printString();
 		// }
