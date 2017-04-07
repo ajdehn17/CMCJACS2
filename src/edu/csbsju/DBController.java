@@ -181,7 +181,7 @@ public class DBController {
 	  * @param username User name to be searched in the database.
 	  * @return Account object related to provided user name.
 	  */
-	 public Account findAccount(String username)
+	 public Account findAccount(String username) throws Exception
 	 {
 		 String firstName = null;
 		 String lastName = null;
@@ -243,7 +243,7 @@ public class DBController {
 	  * @param p Password of user
 	  * @param type, character representing the user's type
 	  * @param status, character representing the user's status
-	  * @return boolean depending on it the edit was successful.
+	  * @return boolean true if edit was made correctly.
 	  */
 	 public boolean editAccount(String u, String fn,String ln,String p,char type, char status)
 	 {
