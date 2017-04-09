@@ -139,7 +139,7 @@ public class UserUI extends AccountUI{
 	 * @param u university
 	 * @return a list of university objects
 	 */
-	public List<University> getFiveMatches(University u){
+	public List<University> getFiveMatches(String u){
 		return userFunc.getFiveMatches(u);
 	}
 	

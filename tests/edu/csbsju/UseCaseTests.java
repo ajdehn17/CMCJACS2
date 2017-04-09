@@ -77,7 +77,11 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase1LoginSuccessful() {
+		//Logon with a successful username
 		Account a = ac.logOn("juser", "user");
+		
+		//Check that each of the attributes for the account logged on are 
+		//the correct values.
 		String p = a.getPassword();
 		assertEquals("Password is " + p, p, "user");
 		String u = a.getUsername();
@@ -94,18 +98,23 @@ public class UseCaseTests {
 
 	@Test(expected = Error.class)
 	public void UseCase1LoginInvalidUsername() {
+		//Logon using an invlaid username. An error is thrown.
 		Account a = ac.logOn("IMAD", "user");
 		assertEquals("Account is " + a, a, null);
 	}
 
 	@Test(expected = Error.class)
 	public void UseCase1LoginInvalidPassword() {
+		//Logon using an invalid password for a valid username. 
+		// and error is thrown
 		Account a = ac.logOn("juser", "IMAD");
 		assertEquals("Account is " + a, a, null);
 	}
 
 	@Test(expected = Error.class)
 	public void UseCase1LoginDeactivated() {
+		//Logon using a valid username and a valid password but the user
+		//is not active. The user is deactivated
 		Account a = ac.logOn("luser", "luser");
 		assertEquals("Account is " + a, a, null);
 	}
@@ -114,23 +123,38 @@ public class UseCaseTests {
 	public void UseCase2Search() {
 		int result = 0;
 		int expected = 16;
+		//User logs onto the system.
+		Account a = ac.logOn("juser", "user");
+		if (a != null) {
+			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
+		}
+		
+		//This list is the schools that are expected to be returned by the search,.
 		List<String> schools = Arrays.asList("BARNARD", "BARUCH", "CCNY", "COLUMBIA", "COOPER UNION",
 				"EASTMAN SCHOOL OF MUSIC", "FORDHAM", "JUILLIARD", "NEW YORK UNIVERSITY",
 				"POLYTECHNIC INSTITUTE OF NEWYORK", "PRATT", "QUEENS", "ST JOHNS UNIVERSITY", "SUNY BUFFALO", "TOURO",
 				"UNIVERSITY OF ROCHESTER");
+		
+		//Search using the location, state, and number of students.
 		List<University> list = u.searchForSchools(null, "NEW YORK", "URBAN", null, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+		//This for loop goes through each university in the searched list and keeps a counter
 		for (University u : list) {
 			result++;
 		}
+		//Asserts that the counter is the expected value.
 		assertEquals("The length of the list is:" + expected, expected, result);
+		
 		result = 0;
+		//Then goes throgh a double for loop to ensure that each name of the school expected
+		//is in the searched list as well.
 		for (University u : list) {
 			for (String s : schools)
 				if (u.getUniversityName().equals(s))
 					;
 			result++;
 		}
+		//Asserts that those two numbers are equal.
 		assertEquals("The length of the list is:" + expected, expected, result);
 
 	}
@@ -139,38 +163,48 @@ public class UseCaseTests {
 	public void UseCase2SearchBrowseAllSchools() {
 		int result = 0;
 		int expected = 183;
+		//A DBController object is only created to check the answer and get all universities.
 		DBController d = new DBController();
 		List<University> y = d.getAllUniversities();
 		List<String> schools = new ArrayList<String>();
+		//Goes through the list of universities and adds their names to a new list
 		for (University q : y) {
 			String name = q.getUniversityName();
 			schools.add(name);
 		}
+		
+		//Searches using no criteria which should allow the user to browse.
 		List<University> list = u.searchForSchools(null, null, null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, null);
 		for (University u : list) {
 			result++;
 		}
+		//Asserts that the search really did return all schools in the database.
 		assertEquals("The length of the list is:" + expected, expected, result);
+		
 		result = 0;
+		//Goes through each school and ensures that the name is in the list.
 		for (University u : list) {
 			for (String s : schools)
 				if (u.getUniversityName().equals(s))
 					;
 			result++;
 		}
+		//Ensures that they are equal in number.
 		assertEquals("The length of the list is:" + expected, expected, result);
 	}
 
 	@Test
 	public void UseCase2SearchNoSchoolsFound() {
+		//User logs onto the system.
 		Account a = ac.logOn("juser", "user");
 		if (a != null) {
 			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
 		}
+		
 		int result = 0;
 		int expected = 0;
-		List<String> schools = Arrays.asList();
+		//The user searches for a school that is not in the system.
 		List<University> list = u.searchForSchools("JACOBSTON", "JACOB", null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
 		if (list != null) {
@@ -178,14 +212,7 @@ public class UseCaseTests {
 				result++;
 			}
 		}
-		assertEquals("The length of the list is:" + expected, expected, result);
-		result = 0;
-		for (University u : list) {
-			for (String s : schools)
-				if (u.getUniversityName().equals(s))
-					;
-			result++;
-		}
+		//Asserts that no schools were found in the search.
 		assertEquals("The length of the list is:" + expected, expected, result);
 	}
 
@@ -193,20 +220,31 @@ public class UseCaseTests {
 	public void UseCase2SearchOnlyUpperBounds() {
 		int result = 0;
 		int expected = 3;
+		//User logs onto the system.
+		Account a = ac.logOn("juser", "user");
+		if (a != null) {
+			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
+		}
+		
+		//A list of expected schools from the search
 		List<String> schools = Arrays.asList("COLLEGE OF SAINT BENEDICT", "CSBSJU", "U OF M DULUTH");
+		//Searches using only upper bounds.
 		List<University> list = u.searchForSchools(null, null, null, null, 0, 10000, 0, 50, 0, 400, 0, 400, 0, 15000, 0,
 				50, 0, 1000, 0, 100, 0, 100, 0, 5, 0, 5, 0, 5, null);
 		for (University u : list) {
 			result++;
 		}
+		//Asserts that the two lists contain equal length.
 		assertEquals("The length of the list is:" + expected, expected, result);
+		
 		result = 0;
+		//Goes through both lists and ensures that they include that same names
 		for (University u : list) {
 			for (String s : schools)
-				if (u.getUniversityName().equals(s))
-					;
-			result++;
+				if (u.getUniversityName().equals(s));
+					result++;
 		}
+		//Asserts that they are of equal number.
 		assertEquals("The length of the list is:" + expected, expected, result);
 	}
 
@@ -214,20 +252,31 @@ public class UseCaseTests {
 	public void UseCase2SearchOnlyLowerBounds() {
 		int result = 0;
 		int expected = 2;
-		List<String> schools = Arrays.asList("BRYN MAWR," + "MOUNT HOLYOKE");
+		//User logs onto the system.
+		Account a = ac.logOn("juser", "user");
+		if (a != null) {
+			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
+		}
+		
+		//The list of schools expected from the search.
+		List<String> schools = Arrays.asList("BRYN MAWR","MOUNT HOLYOKE");
+		//Searching using only lower bounds as input.
 		List<University> list = u.searchForSchools(null, null, null, null, 10000, 0, 75, 0, 400, 0, 400, 0, 15000, 0,
 				55, 0, 500, 0, 50, 0, 50, 0, 3, 0, 3, 0, 3, 0, null);
 		for (University u : list) {
 			result++;
 		}
+		//Asserts that the lists contain an equal length.
 		assertEquals("The length of the list is:" + expected, expected, result);
+		
 		result = 0;
+		//Goes through both lists and ensures that names of the universities are the same.
 		for (University u : list) {
 			for (String s : schools)
-				if (u.getUniversityName().equals(s))
-					;
-			result++;
+				if (u.getUniversityName().equals(s));
+					result++;
 		}
+		//Asserts that the lists contain an equal length.
 		assertEquals("The length of the list is:" + expected, expected, result);
 	}
 
@@ -235,28 +284,43 @@ public class UseCaseTests {
 	public void UseCase2SearchEqualBounds() {
 		int result = 0;
 		int expected = 1;
+		//User logs onto the system.
+		Account a = ac.logOn("juser", "user");
+		if (a != null) {
+			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
+		}
+		
+		//Contains a list of schools expected to be found by this search criteria
 		List<String> schools = Arrays.asList("UNIVERSITY OF MINNESOTA");
+		//Searches using all the criteria shown to below.
 		List<University> list = u.searchForSchools(null, null, null, null, 40000, 40000, 45, 45, 490, 490, 557, 557,
 				13772.0, 13772.0, 50.0, 50.0, 8500, 8500, 80, 80, 60, 60, 4, 4, 3, 3, 4, 5, null);
 		for (University u : list) {
 			result++;
 		}
+		//Ensures that the returned list is the same length as the expected list.
 		assertEquals("The length of the list is:" + expected, expected, result);
+		
 		result = 0;
+		//Goes through both lists and determines if they contain the same names.
 		for (University u : list) {
 			for (String s : schools)
-				if (u.getUniversityName().equals(s))
-					;
-			result++;
+				if (u.getUniversityName().equals(s));
+					result++;
 		}
+		//Ensures that the returned list contains the same names as the expected list.
 		assertEquals("The length of the list is:" + expected, expected, result);
 	}
 
 	@Test
 	public void UseCase3ViewStudentProfile() {
+		//Loggs on a user and sets it to an account object.
 		Account a = ac.logOn("juser", "user");
+		
+		//Displays the student information and asserts that it equals what we expect
 		String x = a.displayStudent();
 		String result = "[FirstName=Jackson, LastName=User, Username=juser, Password=user, Type=u, Status=Y]\n";
+		//Asserts that each of the attributes are what we expect as well.
 		assertEquals("The student is " + x, x, result);
 		String p = a.getPassword();
 		assertEquals("Password is " + p, p, "user");
@@ -276,23 +340,30 @@ public class UseCaseTests {
 	public void UseCase4ManageSavedSchools() {
 		int result = 0;
 		int exp = 1;
+		//Loggs on a user object and sets it to the UserUI instance variable.
 		Account a = ac.logOn("juser", "user");
 		if (a != null) {
 			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
 		}
+		//This gets all of the saved schools for the user.
 		List<String> schools = u.getSavedSchools();
+		//Gets a list of the expected saved schools
 		List<String> expected = Arrays.asList("UNIVERSITY OF MINNESOTA");
 		for (String u : schools) {
 			result++;
 		}
+		//Ensures that both lists contain equal length.
 		assertEquals("The length of the list is:" + exp, exp, result);
+		
 		result = 0;
+		//Goes through both lists and ensures that the list contains the same names 
 		for (String u : schools) {
 			for (String s : expected)
 				if (u.equals(s))
 					;
 			result++;
 		}
+		//Asserts that they are both equal in length.
 		assertEquals("The length of the list is:" + exp, exp, result);
 
 	}
@@ -301,43 +372,35 @@ public class UseCaseTests {
 	public void UseCase4ManageSavedSchoolsNone() {
 		int result = 0;
 		int exp = 0;
+		//Logs in a user object with no saved schools.
 		Account a = ac.logOn("JSU", "Jsu--2019");
 		if (a != null) {
-			this.u = new UserUI(new User("Jacob", "Upton", "JSU", "Jsu--2019", 'u', 'Y'));
-		}
+			this.u = new UserUI(new User("Jacob", "Upton", "JSU", "Jsu--2019", 'u', 'Y'));}
+		//gets all of the saved schools from the user.
 		List<String> schools = u.getSavedSchools();
-		List<String> expected = Arrays.asList();
 		if (schools != null) {
 			for (String u : schools) {
-				result++;
-			}
+				result++;}
 		}
-		assertEquals("The length of the list is:" + exp, exp, result);
-		result = 0;
-		if (schools != null) {
-			for (String u : schools) {
-				for (String s : expected)
-					if (u.equals(s))
-						;
-				result++;
-			}
-		}
-		assertEquals("The length of the list is:" + exp, exp, result);
-
-	}
+		//Asserts that there were no universities in the user's saved schools.
+		assertEquals("The length of the list is:" + exp, exp, result);}
 
 	@Test
 	public void UseCase5ManageUniversities() {
 		int result = 0;
 		int expected = 183;
+		//Logs in an admin account 
 		Account acc = ac.logOn("nadmin", "admin");
 		if (acc != null) {
 			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
 		}
+		
+		//Gets all the universities for in the database. They will be displayed
+		//on the screen for the admin to manipulate.
 		List<University> list = a.getUniversities();
 		for (University u : list) {
-			result++;
-		}
+			result++;}
+		//Asserts that the list contains all the universities in the database.
 		assertEquals("The length of the list is:" + expected, expected, result);
 	}
 
@@ -363,6 +426,10 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase7ViewSearchedUniversity() {
+		Account a = ac.logOn("JSU", "Jsu--2019");
+		if (a != null) {
+			this.u = new UserUI(new User("Jacob", "Upton", "JSU", "Jsu--2019", 'u', 'Y'));
+		}
 		// The Student selects a school to view from the menu displayed on U2
 		// The Database is prompted to search for requested University detailed
 		// information
@@ -371,14 +438,12 @@ public class UseCaseTests {
 		// The Database is prompted to search for 5 Universities closely related
 		// to the one the Student requested to view.
 		// The Database sends the detailed information for the 5 universities.
-		DBController d = new DBController();
 		int result = 0;
 		int expected = 5;
 		List<String> schools = Arrays.asList("UNIVERSITY OF WASHINGTON", "UNIVERSITY OF CALIFORNIA LOS ANGELES",
 				"OKLAHOMA STATE UNIVERSITY", "UNIVERSITY OF KANSAS", "UNIVERSITY OF CALIFORNIA DAVIS");
-		SearchController sc = new SearchController();
-		List<University> list = sc.display5Schools(d.getAUniversity(selectedSchool));
-		for (University u : list) {
+		List<University> list = u.getFiveMatches(selectedSchool);
+		for (University u : list) { 
 			result++;
 		}
 		assertEquals("The length of the list is:" + expected, expected, result);
@@ -416,13 +481,11 @@ public class UseCaseTests {
 		// The Database updates the Student’s saved schools list with the
 		// detailed information of the new university.
 		// The Database confirms the update with the system.
-
 		ArrayList<String> expResult = new ArrayList<String>();
 		expResult.add("STANFORD");
 		expResult.add("UNIVERSITY OF MINNESOTA");
-
 		ArrayList<String> actResult;
-		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
+		actResult = (ArrayList<String>) u.getSavedSchools();
 		assertEquals("Saved schools " + expResult, expResult, actResult);
 
 		// Clean up after saving university
@@ -450,12 +513,9 @@ public class UseCaseTests {
 
 		ArrayList<String> expResult = new ArrayList<String>();
 		expResult.add("UNIVERSITY OF MINNESOTA");
-
 		ArrayList<String> actResult;
-		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
+		actResult = (ArrayList<String>) u.getSavedSchools();
 		assertEquals("Saved schools " + expResult, expResult, actResult);
-
-		// Clean up after saving university
 
 
 	}
@@ -466,17 +526,18 @@ public class UseCaseTests {
 		if (a != null) {
 			this.u = new UserUI(new User("Jackson", "User", "juser", "user", 'u', 'Y'));
 		}
-//		The Student decides to save the changes they made to their personal information
+			//The Student decides to save the changes they made to their personal information
 			String newFirstName = "Jackson2";
 			String newLastName = "User2";
 			String newPassword =  "user2";
 			u.editStudentProfile(newFirstName, newLastName, newPassword);
-//		The Student initiates the save.
-//		The Database is prompted to lookup Student’s information.
-//		The Database updates the Student’s information with the new values.
-//		The Database confirms update with the system.
-			Account editedAcct = dbc.findAccount("juser");
 			
+			//The Student initiates the save.
+			//The Database is prompted to lookup Student’s information.
+			//The Database updates the Student’s information with the new values.
+			//The Database confirms update with the system.
+			//This just contacts the DBController in order to check that the data was changed.
+			Account editedAcct = dbc.findAccount("juser");
 			assertEquals("Updated first name: " + newFirstName,
 					newFirstName, editedAcct.getFirstName());
 			assertEquals("Updated last name: " + newLastName,
@@ -484,8 +545,7 @@ public class UseCaseTests {
 			assertEquals("Updated password: " + newPassword,
 					newPassword, editedAcct.getPassword());
 			
-			
-//		The Student’s newly edited profile is now changed.
+			//The Student’s newly edited profile is now changed.
 			newFirstName =  "Jackson";
 			newLastName = "User";
 			newPassword =  "user";
@@ -524,21 +584,21 @@ public class UseCaseTests {
 		// a.The Admin enters in the user’s name, last name, username, and
 		// password.
 		// b.The user’s status is set to “Y” for active.
-		adminFuncCon = new AdminFuncController(activeAdmin);
-		adminFuncCon.addAccount("Imad", "Rahal", "irahal", "aPlusWork", 'u', 'Y');
+		Account a = ac.logOn("juser", "user");
+		if (a != null) {
+			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
+		}
+		this.a.addAccount("Imad", "Rahal", "irahal", "aPlusWork", 'u', 'Y');
 
 		// 3.Admin can select to add the new user to the Database. -- Admin
 		// clicks!
-
 		// 4.The system sends the Database the new user information.
 		boolean expResult = true;
 		assertEquals("User added successfully: " + expResult, expResult, dbc.checkUsername("irahal"));
 
 		// 5.The Database searches its memory of users, ensuring that the
 		// username entered is unique.
-
 		// 6.The Database updates its memory of users, adding the new user.
-
 		// 7.The Database confirms its successful addition with the system.
 
 		// Clean up new user
@@ -547,15 +607,16 @@ public class UseCaseTests {
 
 	@Test (expected=Error.class)
 	public void UseCase14AddUserDuplicateUsername() {
-
+		Account a = ac.logOn("juser", "user");
+		if (a != null) {
+			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
+		}
 		//1.Step 5 fails, The Admin attempts to create a user with a username that is already being used.
-		activeAdmin.addAccount("Jacob","Upton","JSU","Jsu--2019",'u','Y');
+		this.a.addAccount("Jesse","Upton","JSU","Jsu--2019",'u','Y');
 		
 		//a.Return to step 1.
 
 		//b.An error message is displayed telling the user of the unsuccessful addition due to the fact that the username is already in use.
-
-
 
 	}
 

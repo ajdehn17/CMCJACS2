@@ -431,11 +431,8 @@ public class DBController {
 		 if(a == null){
 			 univDBlib.user_addUser(firstName, lastName, username, password, type);
 			 return true;
-		 } else
-		 {
-				return false;
-		 }
-
+		 } 
+		return false;
 	 }
 	 
 	 
