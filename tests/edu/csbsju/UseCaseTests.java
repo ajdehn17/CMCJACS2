@@ -494,7 +494,7 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase10RemoveSavedUniversity() {
-
+		
 	}
 
 	@Test
@@ -514,7 +514,7 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase13AddUniversityDuplicateSchool() {
-
+		
 	}
 
 	@Test
@@ -545,8 +545,17 @@ public class UseCaseTests {
 		dbc.removeA("irahal");
 	}
 
-	@Test
+	@Test (expected=Error.class)
 	public void UseCase14AddUserDuplicateUsername() {
+
+		//1.Step 5 fails, The Admin attempts to create a user with a username that is already being used.
+		activeAdmin.addAccount("Jacob","Upton","JSU","Jsu--2019",'u','Y');
+		
+		//a.Return to step 1.
+
+		//b.An error message is displayed telling the user of the unsuccessful addition due to the fact that the username is already in use.
+
+
 
 	}
 
