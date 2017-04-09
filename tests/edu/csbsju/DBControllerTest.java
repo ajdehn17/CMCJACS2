@@ -250,14 +250,10 @@ public class DBControllerTest {
 	}
 	
 	
-	@Test(expected = Exception.class)
+	@Test
 	public void testAddAccountExisting() throws Exception
 	{	
 		Account a = new Account("Jacob","Upton","juser","Jsu--2019",'u','Y');
-		db1.addAccount(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(),
-				a.getType(), a.getStatus());
-		
-
 		boolean expResult = false;
 		boolean b = db1.addAccount(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(),
 				a.getType(), a.getStatus());

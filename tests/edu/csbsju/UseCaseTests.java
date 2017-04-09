@@ -420,15 +420,13 @@ public class UseCaseTests {
 		ArrayList<String> expResult = new ArrayList<String>();
 		expResult.add("STANFORD");
 		expResult.add("UNIVERSITY OF MINNESOTA");
-		DBController db1 = new DBController();
-		db1.addUniversityToSavedSchools("STANFORD", "juser");
 
 		ArrayList<String> actResult;
-		actResult = (ArrayList<String>) db1.getUserSavedSchools("juser");
+		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
 		assertEquals("Saved schools " + expResult, expResult, actResult);
 
 		// Clean up after saving university
-		db1.removeUniversityFromSavedSchools("STANFORD", "juser");
+		u.removeUniversityFromSavedSchools("STANFORD");
 
 
 	}
@@ -452,15 +450,12 @@ public class UseCaseTests {
 
 		ArrayList<String> expResult = new ArrayList<String>();
 		expResult.add("UNIVERSITY OF MINNESOTA");
-		DBController db1 = new DBController();
-		db1.addUniversityToSavedSchools("STANFORD", "juser");
 
 		ArrayList<String> actResult;
-		actResult = (ArrayList<String>) db1.getUserSavedSchools("juser");
+		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
 		assertEquals("Saved schools " + expResult, expResult, actResult);
 
 		// Clean up after saving university
-		db1.removeUniversityFromSavedSchools("STANFORD", "juser");
 
 
 	}
@@ -480,8 +475,7 @@ public class UseCaseTests {
 //		The Database is prompted to lookup Student’s information.
 //		The Database updates the Student’s information with the new values.
 //		The Database confirms update with the system.
-			DBController db1 = new DBController();
-			Account editedAcct = db1.findAccount("juser");
+			Account editedAcct = dbc.findAccount("juser");
 			
 			assertEquals("Updated first name: " + newFirstName,
 					newFirstName, editedAcct.getFirstName());

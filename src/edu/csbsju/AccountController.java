@@ -186,6 +186,7 @@ public class AccountController {
 	  * @return An account object
 	  */
 	 public Account displayAccount(){
+		 a.displayStudent();
 		 return a;
 	 }
 	 

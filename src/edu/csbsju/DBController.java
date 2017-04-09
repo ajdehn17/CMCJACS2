@@ -365,7 +365,7 @@ public class DBController {
 	 public void removeUniversityFromSavedSchools(String u ,String a)
 	 {
 		 String upperCaseUniversity = u.toUpperCase();
-		 String lowerCaseUser = a.toLowerCase();
+		 String lowerCaseUser = a;
 		 univDBlib.user_removeSchool(lowerCaseUser, upperCaseUniversity);
 	 }
 	 
