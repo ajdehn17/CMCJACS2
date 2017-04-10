@@ -128,7 +128,7 @@ public class DBControllerTest {
 				expResult, db1.findAccount("juser"));
 		*/
 		assertEquals("Exists in the database: " + expResult, 
-				expResult.getUsername(), db1.findAccount("hgil"));;
+				expResult, db1.findAccount("hgil"));;
 		
 	}
 
@@ -169,22 +169,12 @@ public class DBControllerTest {
 	@Test
 	public void testAddUniversity() {
 		ArrayList<String> emp = new ArrayList<String>();
-		emp.add("BUSINESS-ADMINISTRATION");
-		emp.add("EDUCATION");
-		emp.add("PERFORMING-ARTS");
+
 		University u = new University("AUGSBURG2", "MINNESOTA", "SMALL-CITY", "PRIVATE",
 				10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
 
 		db1.addUniversity(u);
 		University expResult2 = db1.getAUniversity("AUGSBURG2");
-		
-		boolean actResult = true;
-		boolean expResult = db1.addUniversity(u);
-		
-		
-		assertEquals("University: " + expResult, 
-				expResult, actResult);
-		
 		assertEquals("University: " + u.getUniversityName(), 
 				u.getUniversityName(), expResult2.getUniversityName());
 		assertEquals("University: " + u.getUniversityName(), 

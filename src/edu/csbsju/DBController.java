@@ -518,4 +518,14 @@ public class DBController {
 	  * This is the MAIN METHOD
 	  * @param args the parameter for the main method
 	  */
+	public static void main(String args[]){
+		DBController d = new DBController();
+		University u = d.getAUniversity("AUGSBURG2");
+		System.out.println(u.printString());
+		d.removeEmphases("AUGSBURG2","BUSINESS-ADMINISTRATION");
+		d.removeEmphases("AUGSBURG2","EDUCATION");
+		d.removeEmphases("AUGSBURG2","PERFORMING-ARTS");
+		System.out.println(u.printString());
+		d.removeU("AUGSBURG2");
+	}
 }
