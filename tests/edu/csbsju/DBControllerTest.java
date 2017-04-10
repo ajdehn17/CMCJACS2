@@ -365,6 +365,25 @@ public class DBControllerTest {
 		
 		
 	}
+	
+	@Test
+	public void testAddEmphasesExisting() {
+		ArrayList<String> expResult = new ArrayList<String>();
+		expResult.add("BUSINESS-ADMINISTRATION");
+		expResult.add("EDUCATION");
+		expResult.add("PERFORMING-ARTS");
+		expResult.add("MIS");
+		
+		int actResult = db1.addEmphases("AUGSBURG", "EDUCATION");
+		
+		int eResult = -1;
+		
+
+		assertEquals("Existing emphases: " + expResult, 
+				actResult, eResult);
+		
+		
+	}
 
 	@Test
 	public void testRemoveEmphases() {

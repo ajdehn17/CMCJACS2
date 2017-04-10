@@ -48,8 +48,13 @@ public class UniversityControllerTest {
 		
 		String expResult = addedU.printString();
 		
+		String expResult2 = a2.getState();
+		
 		assertEquals("Added University: " + expResult, 
 			expResult, a2.printString());
+		
+		assertEquals("Added University: " + expResult2, 
+				expResult, addedU.getState());
 		
 		// Clean up the university method
 		db1.removeU("AUGSBURG2");

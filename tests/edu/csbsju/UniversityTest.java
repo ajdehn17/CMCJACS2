@@ -562,6 +562,8 @@ public class UniversityTest {
 		assertEquals("Emphases: " + testList, 
 				testList, b.getEmphases());
 	}
+	
+	
 
 	@Test
 	public void testRemoveEmphases() {
