@@ -112,7 +112,7 @@ public class UserFuncControllerTest {
 	public void testGetFiveMatches() {
 		DBController d = new DBController();
 		University u = d.getAUniversity("UNIVERSITY OF MINNESOTA");
-		ArrayList<University> l = (ArrayList<University>) ufc.getFiveMatches(u);
+		ArrayList<University> l = (ArrayList<University>) ufc.getFiveMatches("UNIVERSITY OF MINNESOTA");
 		assertEquals("list length is "+l.size(),l.size(),5);
 	}
 

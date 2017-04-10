@@ -174,8 +174,8 @@ public class UserFuncController {
 	 * @param u university
 	 * @return a list of university objects
 	 */
-	public List<University> getFiveMatches(University u){
-		return s.display5Schools(u);
+	public List<University> getFiveMatches(String u){
+		return s.display5Schools(d.getAUniversity(u));
 	}
 	
 }

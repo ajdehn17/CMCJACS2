@@ -88,7 +88,7 @@ public class DBController {
 			 }
 			 count++;
 		 }
-		 throw new IllegalArgumentException("There was a failure");
+		 throw new IllegalArgumentException("Username is not in the database");
 	 }
 	 
 	 /**
@@ -263,7 +263,7 @@ public class DBController {
 	  * It gets all the attributes for the new university and then calls the DBController
 	  * to update the database with the new university
 	  * @param u University Object to be added to the database
-	  * @return boolean true if the addition was successful
+	  * @return boolean true if the addition was successful, false if university already exists in the database
 	  */
 	 public boolean addUniversity(University u)
 	 {
@@ -293,7 +293,7 @@ public class DBController {
 				this.addEmphases(school,emphases);
 			}
 		}
-		
+		// Check that university does not already exist.
 		University uni = getAUniversity(school);
 		if(uni==null){
 			 int i = univDBlib.university_addUniversity(school, state, location, control, numberOfStudents,
@@ -365,7 +365,7 @@ public class DBController {
 	 public void removeUniversityFromSavedSchools(String u ,String a)
 	 {
 		 String upperCaseUniversity = u.toUpperCase();
-		 String lowerCaseUser = a.toLowerCase();
+		 String lowerCaseUser = a;
 		 univDBlib.user_removeSchool(lowerCaseUser, upperCaseUniversity);
 	 }
 	 
@@ -431,11 +431,8 @@ public class DBController {
 		 if(a == null){
 			 univDBlib.user_addUser(firstName, lastName, username, password, type);
 			 return true;
-		 } else
-		 {
-				return false;
-		 }
-
+		 } 
+		return false;
 	 }
 	 
 	 
@@ -521,4 +518,14 @@ public class DBController {
 	  * This is the MAIN METHOD
 	  * @param args the parameter for the main method
 	  */
+	public static void main(String args[]){
+		DBController d = new DBController();
+		University u = d.getAUniversity("AUGSBURG2");
+		System.out.println(u.printString());
+		d.removeEmphases("AUGSBURG2","BUSINESS-ADMINISTRATION");
+		d.removeEmphases("AUGSBURG2","EDUCATION");
+		d.removeEmphases("AUGSBURG2","PERFORMING-ARTS");
+		System.out.println(u.printString());
+		d.removeU("AUGSBURG2");
+	}
 }

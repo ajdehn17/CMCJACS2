@@ -76,7 +76,7 @@ public class UniversityController {
 	   * @param academicScale The academic scale of a university
 	   * @param socialScale Social scale of a university
 	   * @param qualityOfLife Quality of life of a university
-	   * @boolean a boolean noting if an edit was successful or not
+	   * @boolean true if edit was successful
 	 */
 	public boolean editUniversity(String universityName, String state, String location, String control, int numberOfStudents,
             double percentFemale, int satVerbal, int satMath, double expenses, double financialAid, int numberOfApplicants,
