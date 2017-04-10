@@ -554,7 +554,13 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase10RemoveSavedUniversity() {
-		
+		ArrayList<String> expResult = new ArrayList<String>();
+		expResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
+		dbc.addUniversityToSavedSchools("Hogwarts", "juser");
+		dbc.removeUniversityFromSavedSchools("Hogwarts", "juser");
+		ArrayList<String> actResult;
+		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
+		assertEquals("Saved schools " + expResult, expResult, actResult);		
 	}
 
 	@Test
