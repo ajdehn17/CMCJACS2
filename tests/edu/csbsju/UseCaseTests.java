@@ -622,65 +622,76 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase15EditUser() {
-		DBController db1 = new DBController();
-		Account ad = ac.logOn("nadmin", "admin");
-		String fname = "cjzins";
-		AssertTrue(u.checkUsername(fname));
-		Account ac = findAccount("cjzins");
+		Account a = ac.logOn("nadmin", "admin");
+		if (a != null) {
+			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
+		}
+		String fname = "czins";
+		assertTrue(dbc.checkUsername(fname));
 		String newFirstName = "Jo";
 		String newLastName ="Casey";
-		String username = "cjzins";
-		String newPassword = "newp"
-		Account na = a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y');
-		assertEquals("Updated first name: " + newFirstName, newFirstName, ac.getFirstName());
-		assertEquals("Updated last name: " + newLastName, newLastName, ac.getLastName());
-		assertEquals("Updated password: " + newPassword, newPassword, ac.getPassword());
+		String username = "czins";
+		String newPassword = "newp";
+		
+		boolean na = this.a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y');
+		assertTrue(na);
+		
+		Account ac2 = dbc.findAccount("czins");
+		assertEquals("Updated first name: " + newFirstName, newFirstName, ac2.getFirstName());
+		assertEquals("Updated last name: " + newLastName, newLastName, ac2.getLastName());
+		assertEquals("Updated password: " + newPassword, newPassword, ac2.getPassword());
+		
 		newFirstName =  "Casey";
 		newLastName = "Zins";
 		newPassword =  "pass";
-		u.editStudentProfile(newFirstName, newLastName, username, newPassword, 'a', 'Y');
-		}	
+		this.a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y');
 	}
 
 	@Test
 	public void UseCase15EditUserInvalidUsername() {
-		DBController db1 = new DBController();
-		Account ad = ac.logOn("nadmin", "admin");
+		Account a = ac.logOn("nadmin", "admin");
+		if (a != null) {
+			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
+		}
 		String fname = "cjzins";
-		AssertTrue(u.checkUsername(fname));
-		Account ac = findAccount("cjzins");
-		String newFirstName = "Jo";
-		String newLastName ="Casey";
-		String username = "cins";
-		String newPassword = "newp"
-		assertFalse(a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y'));
+		assertFalse(dbc.checkUsername(fname));
 	}
 
 	@Test
 	public void UseCase16Deactivate() {
-		DBController db1 = new DBController();
-		Account ad = ac.logOn("nadmin", "admin");
-		char k = ad.deactivate(findAccount("cjzins"));
-		assertEquals(k. 'N')
+		Account a = ac.logOn("nadmin", "admin");
+		if (a != null) {
+			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
+		}
+		char k = this.a.deactivate(dbc.findAccount("czins"));
+		assertEquals(k,'N');
+		
+		String newFirstName =  "Casey";
+		String newLastName = "Zins";
+		String newPassword =  "pass";
+		this.a.editAccount(newFirstName, newLastName, "czins", newPassword, 'a', 'Y');
 	}
 
 	@Test
 	public void UseCase16DeactivateDeactivatedAccount() {
-		char k = ad.deactivate(findAccount("cjzins"));
-		assertEquals(k. 'N')
+		Account a = ac.logOn("nadmin", "admin");
+		if (a != null) {
+			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
+		}
+		char k = this.a.deactivate(dbc.findAccount("czins"));
+		assertEquals(k,'N');
 	}
 
-	@Test
+	@Test (expected = Error.class)
 	public void UseCase17Logout() {
-		DBController db1 = new DBController();
 		Account ad = ac.logOn("nadmin", "admin");
 		ad.logOff();
-		assertNull(this.username); 
-		assertNull(this.firstName);
-		assertNull(this.lastName);
-		assertNull(this.password);
-		assertEquals(this.status, '\0');
-		assertEquals(this.type, '\0');
+		assertNull(ad.getUsername()); 
+		assertNull(ad.getFirstName());
+		assertNull(ad.getLastName());
+		assertNull(ad.getPassword());
+		assertEquals(ad.getStatus(), '\0');
+		assertEquals(ad.getType(), '\0');
 	}
 
 }
