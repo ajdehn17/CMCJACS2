@@ -577,7 +577,7 @@ public class UseCaseTests {
 		dbc.removeUniversityFromSavedSchools("Hogwarts", "juser");
 		ArrayList<String> actResult;
 		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
-		assertEquals("Saved schools " + expResult, expResult, actResult);		
+		assertEquals("Saved schools " + expResult, expResult, actResult);	
 	}
 
 	@Test
@@ -613,7 +613,7 @@ public class UseCaseTests {
 		String expResult = u.printString();
 		
 
-		assertEquals("Remove Emphases: " + expResult, expResult, this.a.displayUniversity(expResult));
+		assertEquals("Remove Emphases: " + expResult, expResult, this.a.displayUniversity("AUGSBURG"));
 
 	}
 
@@ -642,7 +642,8 @@ public class UseCaseTests {
 		//
 		// 5.The Admin can apply the changes made
 		//
-		//
+
+		
 		// 6.The system sends the Database the changes made for the University
 		//
 		//
