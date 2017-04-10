@@ -558,27 +558,65 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase15EditUser() {
-
+		DBController db1 = new DBController();
+		Account ad = ac.logOn("nadmin", "admin");
+		String fname = "cjzins";
+		AssertTrue(u.checkUsername(fname));
+		Account ac = findAccount("cjzins");
+		String newFirstName = "Jo";
+		String newLastName ="Casey";
+		String username = "cjzins";
+		String newPassword = "newp"
+		Account na = a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y');
+		assertEquals("Updated first name: " + newFirstName, newFirstName, ac.getFirstName());
+		assertEquals("Updated last name: " + newLastName, newLastName, ac.getLastName());
+		assertEquals("Updated password: " + newPassword, newPassword, ac.getPassword());
+		newFirstName =  "Casey";
+		newLastName = "Zins";
+		newPassword =  "pass";
+		u.editStudentProfile(newFirstName, newLastName, username, newPassword, 'a', 'Y');
+		}	
 	}
 
 	@Test
 	public void UseCase15EditUserInvalidUsername() {
-
+		DBController db1 = new DBController();
+		Account ad = ac.logOn("nadmin", "admin");
+		String fname = "cjzins";
+		AssertTrue(u.checkUsername(fname));
+		Account ac = findAccount("cjzins");
+		String newFirstName = "Jo";
+		String newLastName ="Casey";
+		String username = "cins";
+		String newPassword = "newp"
+		assertFalse(a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y'));
 	}
 
 	@Test
 	public void UseCase16Deactivate() {
-
+		DBController db1 = new DBController();
+		Account ad = ac.logOn("nadmin", "admin");
+		char k = ad.deactivate(findAccount("cjzins"));
+		assertEquals(k. 'N')
 	}
 
 	@Test
 	public void UseCase16DeactivateDeactivatedAccount() {
-
+		char k = ad.deactivate(findAccount("cjzins"));
+		assertEquals(k. 'N')
 	}
 
 	@Test
 	public void UseCase17Logout() {
-
+		DBController db1 = new DBController();
+		Account ad = ac.logOn("nadmin", "admin");
+		ad.logOff();
+		assertNull(this.username);
+		assertNull(this.firstName);
+		assertNull(this.lastName);
+		assertNull(this.password);
+		assertEquals(this.status, '\0');
+		assertEquals(this.type, '\0');
 	}
 
 }
