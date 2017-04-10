@@ -607,7 +607,7 @@ public class UseCaseTests {
 		String expResult = u.printString();
 		
 
-		assertEquals("Remove Emphases: " + expResult, expResult, this.a.displayUniversity(expResult));
+		assertEquals("Remove Emphases: " + expResult, expResult, this.a.displayUniversity("AUGSBURG"));
 
 	}
 
