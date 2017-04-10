@@ -675,7 +675,7 @@ public class UseCaseTests {
 		DBController db1 = new DBController();
 		Account ad = ac.logOn("nadmin", "admin");
 		ad.logOff();
-		assertNull(this.username);
+		assertNull(this.username); 
 		assertNull(this.firstName);
 		assertNull(this.lastName);
 		assertNull(this.password);
