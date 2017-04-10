@@ -571,7 +571,6 @@ public class UseCaseTests {
 
 	@Test
 	public void UseCase10RemoveSavedUniversity() {
-<<<<<<< HEAD
 		ArrayList<String> expResult = new ArrayList<String>();
 		expResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
 		dbc.addUniversityToSavedSchools("Hogwarts", "juser");
@@ -579,9 +578,6 @@ public class UseCaseTests {
 		ArrayList<String> actResult;
 		actResult = (ArrayList<String>) dbc.getUserSavedSchools("juser");
 		assertEquals("Saved schools " + expResult, expResult, actResult);		
-=======
-
->>>>>>> branch 'master' of https://github.com/ajdehn17/CMCJACS2
 	}
 
 	@Test
@@ -851,12 +847,7 @@ public class UseCaseTests {
 	@Test (expected = Error.class)
 	public void UseCase17Logout() {
 		Account ad = ac.logOn("nadmin", "admin");
-<<<<<<< HEAD
 		ac.logout();
-=======
-		ad.logOff();
-
->>>>>>> branch 'master' of https://github.com/ajdehn17/CMCJACS2
 		assertNull(ad.getUsername()); 
 		assertNull(ad.getFirstName());
 		assertNull(ad.getLastName());
