@@ -780,7 +780,7 @@ public class UseCaseTests {
 	}
 
 	@Test
-	public void UseCase15EditUser() {
+	public void UseCase15EditUser() { 
 		Account a = ac.logOn("nadmin", "admin");
 		if (a != null) {
 			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
