@@ -778,6 +778,7 @@ public class UseCaseTests {
 		if (a != null) {
 			this.a = new AdminUI(new Admin("Noreen", "Admin", "nadmin", "admin", 'a', 'Y'));
 		}
+
 		String fname = "czins";
 		assertTrue(dbc.checkUsername(fname));
 		String newFirstName = "Jo";
@@ -796,7 +797,7 @@ public class UseCaseTests {
 		newFirstName =  "Casey";
 		newLastName = "Zins";
 		newPassword =  "pass";
-		>>>>>>> branch 'master' of https://github.com/ajdehn17/CMCJACS2
+		
 
 		this.a.editAccount(newFirstName, newLastName, username, newPassword, 'a', 'Y');
 
