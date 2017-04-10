@@ -49,6 +49,10 @@ public class DBControllerTest {
 		assertEquals("Exists in the database: " + expResult, 
 				expResult, db1.checkUsername("juser"));
 		
+	}
+	
+	@Test
+	public void testCheckUsernameFalse() {
 		boolean expResult2 = false;
 		assertEquals("Exists in the database: " + expResult2, 
 				expResult2, db1.checkUsername("ajdehn"));
@@ -115,6 +119,18 @@ public class DBControllerTest {
 				expResult.getType(), db1.findAccount("juser").getType());
 		
 	}
+	
+	@Test
+	public void testFindAccountNonExistent() {
+		Account expResult = null;
+		/**
+		assertEquals("Exists in the database: " + expResult, 
+				expResult, db1.findAccount("juser"));
+		*/
+		assertEquals("Exists in the database: " + expResult, 
+				expResult.getUsername(), db1.findAccount("hgil"));;
+		
+	}
 
 	@Test
 	public void testGetAUniversity() {
@@ -156,11 +172,42 @@ public class DBControllerTest {
 		emp.add("BUSINESS-ADMINISTRATION");
 		emp.add("EDUCATION");
 		emp.add("PERFORMING-ARTS");
-		University expResult = new University("AUGSBURG2", "MINNESOTA", "SMALL-CITY", "PRIVATE",
+		University u = new University("AUGSBURG2", "MINNESOTA", "SMALL-CITY", "PRIVATE",
 				10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
 
-		db1.addUniversity(expResult);
+		db1.addUniversity(u);
+		University expResult2 = db1.getAUniversity("AUGSBURG2");
+		
+		boolean actResult = true;
+		boolean expResult = db1.addUniversity(u);
+		
+		
+		assertEquals("University: " + expResult, 
+				expResult, actResult);
+		
+		assertEquals("University: " + u.getUniversityName(), 
+				u.getUniversityName(), expResult2.getUniversityName());
+		assertEquals("University: " + u.getUniversityName(), 
+				u.getState(), expResult2.getState());
+		
 		db1.removeU("AUGSBURG2");
+	}
+	
+	@Test
+	public void testAddUniversityExisting() {
+		ArrayList<String> emp = new ArrayList<String>();
+		emp.add("BUSINESS-ADMINISTRATION");
+		emp.add("EDUCATION");
+		emp.add("PERFORMING-ARTS");
+		University u = new University("AUGSBURG", "MINNESOTA", "SMALL-CITY", "PRIVATE",
+				10000, 43.0, 420, 490, 29991.0, 80.0, 4000, 85.0, 50.0, 1, 3, 4, emp);	
+
+		boolean actResult = false;
+		boolean expResult= db1.addUniversity(u);
+		
+		assertEquals("University: " + expResult, 
+				expResult, actResult);
+
 	}
 
 	@Test

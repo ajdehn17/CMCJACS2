@@ -88,7 +88,7 @@ public class DBController {
 			 }
 			 count++;
 		 }
-		 throw new IllegalArgumentException("There was a failure");
+		 throw new IllegalArgumentException("Username is not in the database");
 	 }
 	 
 	 /**
@@ -263,7 +263,7 @@ public class DBController {
 	  * It gets all the attributes for the new university and then calls the DBController
 	  * to update the database with the new university
 	  * @param u University Object to be added to the database
-	  * @return boolean true if the addition was successful
+	  * @return boolean true if the addition was successful, false if university already exists in the database
 	  */
 	 public boolean addUniversity(University u)
 	 {
@@ -293,7 +293,7 @@ public class DBController {
 				this.addEmphases(school,emphases);
 			}
 		}
-		
+		// Check that university does not already exist.
 		University uni = getAUniversity(school);
 		if(uni==null){
 			 int i = univDBlib.university_addUniversity(school, state, location, control, numberOfStudents,

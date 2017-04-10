@@ -60,9 +60,9 @@ public class UniversityTest {
 	public void testUniversityString() {
 		University local = new University("X");
 		
-		String expResult = c.printString();
+		String expResult = "X";
 		assertEquals("University Name " + expResult, 
-				expResult, local.printString());
+				expResult, local.getUniversityName());
 	}
 
 	@Test
