@@ -685,7 +685,7 @@ public class UseCaseTests {
 	@Test (expected = Error.class)
 	public void UseCase17Logout() {
 		Account ad = ac.logOn("nadmin", "admin");
-		ad.logOff();
+		ac.logout();
 		assertNull(ad.getUsername()); 
 		assertNull(ad.getFirstName());
 		assertNull(ad.getLastName());
